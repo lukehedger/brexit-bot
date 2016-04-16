@@ -1,0 +1,22 @@
+{
+  "name": "brexit-bot",
+  "version": "1.0.0",
+  "description": "Argue with a robot about Brexit or Bremain #spurious",
+  "main": "index.js",
+  "scripts": {
+    "start": "token= node index.js",
+    "develop": "token= nodemon --exec node bot.js",
+    "deploy": ""
+  },
+  "keywords": [
+    "brexit",
+    "bot"
+  ],
+  "author": "Luke Hedger <luke.hedger@gmail.com> (http://www.level-out.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "botkit": "^0.1.1",
+    "express": "^4.13.4",
+    "node-fetch": "^1.5.1"
+  }
+}
