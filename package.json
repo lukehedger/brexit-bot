@@ -4,8 +4,8 @@
   "description": "Argue with a robot about Brexit or Bremain #spurious",
   "main": "index.js",
   "scripts": {
-    "start": "token= node index.js",
-    "develop": "token= nodemon --exec node bot.js",
+    "start": "token=xoxb-35314404963-sayDYFs8vHso5aCt1ai6t8HY node index.js",
+    "develop": "token=xoxb-35314404963-sayDYFs8vHso5aCt1ai6t8HY nodemon --exec node bot.js",
     "deploy": ""
   },
   "keywords": [
