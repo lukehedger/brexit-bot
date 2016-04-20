@@ -24,7 +24,7 @@ const PATTERN = {
   greeting: ['hello', 'hey', 'hi', 'yo', 'hiya', 'oi']
 }
 
-const RESPONSES = {
+const RESPONSE = {
   welcome: 'Hello there! I\'m BrexitBot :robot_face: - get my attention by typing `@brexitbot` followed by your question or comment about :flag-gb: in the :flag-eu:',
   greeting: ['Hello there!', 'Yo!', 'Bonjour!', 'Hola!'],
   more: 'Want to find out more about an EU topic?',
@@ -39,7 +39,7 @@ bot.startRTM( (err, bot, payload) => {
 
 controller.on('channel_joined', (bot, message) => {
 
-  bot.reply(message, RESPONSES.welcome)
+  bot.reply(message, RESPONSE.welcome)
 
 })
 
@@ -47,7 +47,7 @@ controller.hears(PATTERN.greeting, INTERACTION.direct, (bot, message) => {
 
   giveOptions = (response, convo) => {
 
-    convo.ask(RESPONSES.topics, (response, convo) => {
+    convo.ask(RESPONSE.topics, (response, convo) => {
       hearChoice(response, convo)
       convo.next()
     })
@@ -64,10 +64,10 @@ controller.hears(PATTERN.greeting, INTERACTION.direct, (bot, message) => {
   bot.startConversation(message, (err, convo) => {
 
     // TODO - choose random greeting using ramda
-    convo.say(RESPONSES.greeting[0])
+    convo.say(RESPONSE.greeting[0])
 
     // START
-    convo.ask(RESPONSES.more, [
+    convo.ask(RESPONSE.more, [
       {
         pattern: bot.utterances.yes,
         callback: (response, convo) => {
@@ -98,7 +98,7 @@ controller.hears(PATTERN.greeting, INTERACTION.direct, (bot, message) => {
 
       if (convo.status == 'completed') {
 
-        var topic = convo.extractResponse(RESPONSES.topics)
+        var topic = convo.extractResponse(RESPONSE.topics)
 
         // TODO -> api(topic)
 
