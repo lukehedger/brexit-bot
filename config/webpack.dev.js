@@ -11,7 +11,7 @@ const PATHS = {
 
 module.exports = {
   devtool: 'eval',
-  entry: ['webpack/hot/dev-server', PATHS.src],
+  entry: [PATHS.src],
   output: {
     path: PATHS.dist,
     filename: 'bundle.js'
@@ -23,17 +23,13 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new CleanPlugin(['index.html', 'bundle.js', 'bundle.js.map', 'style.css', 'style.css.map'], PATHS.dist),
     new HtmlWebpackPlugin({
       template: 'app/index.html'
     })
   ],
   devServer: {
-    contentBase: PATHS.dist,
     port: 3000,
-    hot: true,
-    inline: true,
     stats: 'errors-only',
     historyApiFallback: true,
     outputPath: PATHS.dist
