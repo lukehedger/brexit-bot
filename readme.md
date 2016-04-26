@@ -1,11 +1,10 @@
 # Brexit Bot
 
-> Argue with a robot about Brexit or Bremain #spurious
+> Ask a robot about Brexit or Bremain #spurious
 
 ## Setup bot
 
 ```
-npm i -g nodemon
 npm i
 ```
 
@@ -15,8 +14,8 @@ npm i
 npm run develop
 ```
 
-## Deploy bot
+## Build bot
 
 ```
-npm run deploy
+npm run build
 ```

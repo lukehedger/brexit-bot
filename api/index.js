@@ -1,4 +1,3 @@
-const bot = require('./bot');
 const app = require('express')();
 
 app.get('/', (req, res) => {
