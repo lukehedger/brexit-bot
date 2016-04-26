@@ -9,6 +9,12 @@ import { getAll } from './selectors'
 
 export class Container extends React.Component {
 
+  componentWillMount() {
+
+    console.log('bot mounted');
+
+  }
+
   render() {
 
     return (
