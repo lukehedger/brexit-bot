@@ -1,7 +1,23 @@
-import '../css/app.css';
+import '../css/app.css'
 
-import React from 'react';
-import { render } from 'react-dom'
-import Root from './shared/containers/Root';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Root from './shared/containers/Root'
 
-render(<Root />, document.getElementById('root'));
+const rootEl = document.getElementById('root')
+
+let render = () => {
+  ReactDOM.render(<Root />, rootEl)
+}
+
+// Support hot reloading of components
+if (module.hot) {
+  console.log('hot');
+
+  module.hot.accept('./shared/containers/Root', () => {
+    setTimeout(render)
+  })
+
+}
+
+render();
