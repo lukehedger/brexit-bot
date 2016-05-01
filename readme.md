@@ -11,7 +11,7 @@ npm i
 ## Local bot
 
 ```
-npm run develop
+npm start
 ```
 
 ## Build bot
