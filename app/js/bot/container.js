@@ -19,7 +19,7 @@ export class Container extends React.Component {
 
     return (
       <div>
-        <h1>Bot</h1>
+        <h1>BrexitBot</h1>
         {/*<Components.rating cheers={4} />*/}
       </div>
     )

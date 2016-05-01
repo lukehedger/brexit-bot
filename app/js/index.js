@@ -12,7 +12,6 @@ let render = () => {
 
 // Support hot reloading of components
 if (module.hot) {
-  console.log('hot');
 
   module.hot.accept('./shared/containers/Root', () => {
     setTimeout(render)

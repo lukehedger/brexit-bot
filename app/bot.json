@@ -1,0 +1,43 @@
+{
+  "bot": [
+    {
+      "id": 0,
+      "message": "Brexit or Bremain?",
+      "options": [
+        {
+          "display": "Brexit"
+        },
+        {
+          "display": "Bremain"
+        },
+        {
+          "display": "What the hell are you on about?",
+          "next": 1
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "id": 1,
+      "message": "Explain EU Ref. If you want to know more go to...",
+      "type": "explanation"
+    },
+    {
+      "id": 2,
+      "message": "True or false... Britons will be banned from eating croissants should we exit Europe",
+      "options": [
+        {
+          "display": "true",
+          "correct": false,
+          "response": "Don't be silly"
+        },
+        {
+          "display": "false",
+          "correct": true,
+          "response": "Allez les bleus!"
+        }
+      ],
+      "type": "quiz"
+    }
+  ]
+}
