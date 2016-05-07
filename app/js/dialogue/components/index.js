@@ -4,6 +4,7 @@ import message from './message'
 import options from './options'
 import text from './text'
 import time from './time'
+import user from './user'
 
 export {
   avatar,
@@ -12,4 +13,5 @@ export {
   options,
   text,
   time,
+  user,
 }

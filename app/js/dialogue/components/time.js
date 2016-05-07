@@ -1,11 +1,11 @@
-import React from 'react';
-// import styles from 'css/components/input.css';
+import React from 'react'
+// import styles from 'css/components/time.css'
 
 const Component = (props) => {
 
   return (
     <div>
-      input
+      time
     </div>
   );
 

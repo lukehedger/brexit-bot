@@ -5,7 +5,26 @@ import { createReducer } from 'redux-immutablejs'
 import { REQUEST_DIALOGUE } from './actionTypes'
 
 export const initialState = Immutable.Map({
-  request: false
+  messagesByUser: [
+    {
+      messages: [
+        {
+          sender: 'bot',
+          body: 'Hello',
+          collapse: false,
+          delay: 0
+        },
+        {
+          sender: 'bot',
+          body: 'How are you?',
+          collapse: false,
+          delay: 500
+        }
+      ],
+      time: 1462633051099,
+      username: 'bot'
+    }
+  ]
 })
 
 export default createReducer(initialState, {
