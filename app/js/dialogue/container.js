@@ -5,16 +5,18 @@ import { connect } from 'react-redux'
 
 import * as actions from './actions'
 import * as Components from './components'
-import { getAll, getMessagesByUser } from './selectors'
+import { getAll, getMessagesByUser, hasVisited } from './selectors'
 
 export class Container extends React.Component {
 
   componentWillMount() {
 
-    console.log('dialogue mounted')
+    const { recordVisit, visited } = this.props
 
-    // TODO - returning or new?
-    // TODO - get greeting
+    // record new visit
+    if (!visited) recordVisit()
+
+    // TODO - get greeting based on `visited` -> /bot/greeting/:visited
 
   }
 
@@ -38,7 +40,8 @@ export class Container extends React.Component {
 export default connect(
   createStructuredSelector({
     dialogue: getAll,
-    messagesByUser: getMessagesByUser
+    messagesByUser: getMessagesByUser,
+    visited: hasVisited
   }),
   dispatch => bindActionCreators(actions, dispatch)
 )(Container)
