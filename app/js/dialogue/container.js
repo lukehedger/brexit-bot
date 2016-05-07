@@ -4,14 +4,15 @@ import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux'
 
 import * as actions from './actions'
-// import * as Components from './components'
 import { getAll } from './selectors'
+
+import * as User from '../user';
 
 export class Container extends React.Component {
 
   componentWillMount() {
 
-    console.log('bot mounted');
+    console.log('dialogue mounted');
 
   }
 
@@ -20,7 +21,7 @@ export class Container extends React.Component {
     return (
       <div>
         <h1>BrexitBot</h1>
-        {/*<Components.rating cheers={4} />*/}
+        <User.Container />
       </div>
     )
 
@@ -30,7 +31,7 @@ export class Container extends React.Component {
 
 export default connect(
   createStructuredSelector({
-    bot: getAll
+    dialogue: getAll
   }),
   dispatch => bindActionCreators(actions, dispatch)
 )(Container)

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import * as bot from '../../bot'
+import * as dialogue from '../../dialogue'
 
 export default combineReducers({
   routing: routerReducer,
-  [bot.name]: bot.reducer
+  [dialogue.name]: dialogue.reducer
 })

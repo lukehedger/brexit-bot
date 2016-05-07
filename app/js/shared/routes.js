@@ -4,11 +4,11 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 // containers
 import App from './containers/App'
 import NotFound from './containers/NotFound'
-import * as Bot from '../bot';
+import * as Dialogue from '../dialogue';
 
 module.exports = (
   <Route path="/" component={App}>
-    <IndexRoute component={Bot.Container} />
+    <IndexRoute component={Dialogue.Container} />
     <Route path="*" component={NotFound} />
   </Route>
 )
