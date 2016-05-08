@@ -2,7 +2,7 @@
   "name": "brexit-bot",
   "version": "1.0.0",
   "description": "Ask a robot about Brexit or Bremain #spurious",
-  "main": "api/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --config config/webpack.dev.js",
     "build": "NODE_ENV=production webpack --config config/webpack.prod.js --progress --profile --colors",
