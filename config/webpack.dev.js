@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const env = require('./env')
+
 const PATHS = {
   src: path.join(__dirname, '../app/js'),
   dist: path.join(__dirname, '../public'),
@@ -11,7 +13,7 @@ const PATHS = {
 
 module.exports = {
   devtool: 'eval',
-  entry: [PATHS.src],
+  entry: ['babel-polyfill', PATHS.src],
   output: {
     path: PATHS.dist,
     filename: 'bundle.js'
@@ -23,6 +25,9 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      API_HOST: JSON.stringify(env.development.api)
+    }),
     new CleanPlugin(['index.html', 'bundle.js', 'bundle.js.map', 'style.css', 'style.css.map'], PATHS.dist),
     new HtmlWebpackPlugin({
       template: 'app/index.html'
@@ -41,7 +46,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          "presets": ["es2015", "react"],
+          "presets": ["es2015", "react", "stage-2"],
           cacheDirectory: true
         }
       },

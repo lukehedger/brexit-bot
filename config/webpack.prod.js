@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const env = require('./env')
+
 const PATHS = {
   src: path.join(__dirname, '../app/js'),
   dist: path.join(__dirname, '../public'),
@@ -11,7 +13,7 @@ const PATHS = {
 
 module.exports = {
   devtool: 'source-map',
-  entry: [PATHS.src],
+  entry: ['babel-polyfill', PATHS.src],
   output: {
     path: PATHS.dist,
     filename: 'bundle.js'
@@ -26,7 +28,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
-      }
+      },
+      API_HOST: JSON.stringify(env.production.api)
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -45,7 +48,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          "presets": ["es2015", "react", "react-optimize"]
+          "presets": ["es2015", "react", "react-optimize", "stage-2"]
         }
       },
       {

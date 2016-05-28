@@ -11,12 +11,13 @@ export class Container extends React.Component {
 
   componentWillMount() {
 
-    const { recordVisit, visited } = this.props
+    const { fetchGreeting, setVisit, visited } = this.props
 
     // record new visit
-    if (!visited) recordVisit()
+    if (!visited) setVisit()
 
     // TODO - get greeting based on `visited` -> /bot/greeting/:visited
+    fetchGreeting()
 
   }
 

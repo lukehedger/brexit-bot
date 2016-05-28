@@ -1,4 +1,4 @@
-import fetch from 'whatwg-fetch'
+import 'whatwg-fetch'
 import { API } from '../constants'
 
 export function get(route) {

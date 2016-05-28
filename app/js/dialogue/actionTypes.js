@@ -1,4 +1,31 @@
 import { name } from './constants';
 
-export const REQUEST_DIALOGUE = `${name}/REQUEST_DIALOGUE`;
-export const NEW_VISIT = `${name}/NEW_VISIT`;
+export const FETCH_HUMAN_REQUEST = `${name}/FETCH_HUMAN_REQUEST`
+export const FETCH_HUMAN_SUCCESS = `${name}/FETCH_HUMAN_SUCCESS`
+export const FETCH_HUMAN_FAILURE = `${name}/FETCH_HUMAN_FAILURE`
+
+export const FETCH_GREETING_REQUEST = `${name}/FETCH_GREETING_REQUEST`
+export const FETCH_GREETING_SUCCESS = `${name}/FETCH_GREETING_SUCCESS`
+export const FETCH_GREETING_FAILURE = `${name}/FETCH_GREETING_FAILURE`
+
+export const FETCH_POLL_REQUEST = `${name}/FETCH_POLL_REQUEST`
+export const FETCH_POLL_SUCCESS = `${name}/FETCH_POLL_SUCCESS`
+export const FETCH_POLL_FAILURE = `${name}/FETCH_POLL_FAILURE`
+
+export const FETCH_TOPIC_REQUEST = `${name}/FETCH_TOPIC_REQUEST`
+export const FETCH_TOPIC_SUCCESS = `${name}/FETCH_TOPIC_SUCCESS`
+export const FETCH_TOPIC_FAILURE = `${name}/FETCH_TOPIC_FAILURE`
+
+export const FETCH_SPURIOUS_REQUEST = `${name}/FETCH_SPURIOUS_REQUEST`
+export const FETCH_SPURIOUS_SUCCESS = `${name}/FETCH_SPURIOUS_SUCCESS`
+export const FETCH_SPURIOUS_FAILURE = `${name}/FETCH_SPURIOUS_FAILURE`
+
+export const SET_VISIT = `${name}/SET_VISIT`
+
+export const SET_POLL_REQUEST = `${name}/SET_POLL_REQUEST`
+export const SET_POLL_SUCCESS = `${name}/SET_POLL_SUCCESS`
+export const SET_POLL_FAILURE = `${name}/SET_POLL_FAILURE`
+
+export const SET_RESPONSE_REQUEST = `${name}/SET_RESPONSE_REQUEST`
+export const SET_RESPONSE_SUCCESS = `${name}/SET_RESPONSE_SUCCESS`
+export const SET_RESPONSE_FAILURE = `${name}/SET_RESPONSE_FAILURE`
