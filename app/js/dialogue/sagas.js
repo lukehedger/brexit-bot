@@ -3,7 +3,7 @@ import { call, put, fork, select } from 'redux-saga/effects'
 
 import * as API from '../shared/services/api'
 import * as actions from './actionTypes'
-import { getMessagesByUser, hasVisited } from './selectors'
+import { hasVisited } from './selectors'
 
 function* pushBotMessage(action) {
 
@@ -23,7 +23,7 @@ function* fetchBotGreeting(action) {
     const data = yield res.json()
     const greeting = data.greeting
 
-    yield put({ type: actions.FETCH_GREETING_SUCCESS, payload: { incoming: greeting, requesting: false } })
+    yield put({ type: actions.FETCH_GREETING_SUCCESS, payload: { incoming: greeting, requesting: false, error: null } })
 
   } catch (e) {
 

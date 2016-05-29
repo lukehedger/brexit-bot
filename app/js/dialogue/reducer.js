@@ -16,18 +16,29 @@ export default createReducer(initialState, {
 
   [actions.FETCH_GREETING_REQUEST]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_GREETING_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_GREETING_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.FETCH_POLL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_POLL_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_POLL_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.FETCH_TOPIC_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_TOPIC_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_TOPIC_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.FETCH_SPURIOUS_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_SPURIOUS_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_SPURIOUS_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.SET_VISIT]: (state, action) => state.merge({ ...action.payload }),
 
   [actions.SET_POLL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.SET_POLL_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.SET_POLL_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.SET_RESPONSE_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.SET_RESPONSE_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.SET_RESPONSE_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.PUSH_MESSAGE]: (state, action) => state.updateIn(['messages'], val => val.push({ ...action.payload })),
 
