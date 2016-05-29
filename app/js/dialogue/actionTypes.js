@@ -29,3 +29,5 @@ export const SET_POLL_FAILURE = `${name}/SET_POLL_FAILURE`
 export const SET_RESPONSE_REQUEST = `${name}/SET_RESPONSE_REQUEST`
 export const SET_RESPONSE_SUCCESS = `${name}/SET_RESPONSE_SUCCESS`
 export const SET_RESPONSE_FAILURE = `${name}/SET_RESPONSE_FAILURE`
+
+export const PUSH_MESSAGE = `${name}/PUSH_MESSAGE`

@@ -1,5 +1,5 @@
 import { name } from './constants';
 
 export const getAll = state => state.get(name);
-export const getMessagesByUser = state => state.getIn([name, 'messagesByUser']);
+export const getMessages = state => state.getIn([name, 'messages']);
 export const hasVisited = state => state.getIn([name, 'visited']);

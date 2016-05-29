@@ -4,7 +4,7 @@ import { createReducer } from 'redux-immutablejs'
 import * as actions from './actionTypes'
 
 export const initialState = Immutable.fromJS({
-  messagesByUser: [],
+  messages: [],
   requesting: false,
   visited: false,
   error: null
@@ -28,5 +28,7 @@ export default createReducer(initialState, {
   [actions.SET_POLL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
 
   [actions.SET_RESPONSE_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+
+  [actions.PUSH_MESSAGE]: (state, action) => state.updateIn(['messages'], val => val.push({ ...action.payload })),
 
 })

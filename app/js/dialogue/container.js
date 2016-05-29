@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import * as actions from './actions'
 import * as Components from './components'
-import { getAll, getMessagesByUser, hasVisited } from './selectors'
+import { getAll, getMessages, hasVisited } from './selectors'
 
 export class Container extends React.Component {
 
@@ -23,14 +23,19 @@ export class Container extends React.Component {
 
   render() {
 
-    const { messagesByUser } = this.props
+    const { messages } = this.props
 
-    console.log(messagesByUser.toJS())
+    // console.log(messages.toJS())
+
+    // TODO - no longer messagesByUser, just an massive array of messages
+    // will need to rethink component structure (eg. message->avatar (display on condition?), time)
 
     return (
       <div>
         <h1>BrexitBot</h1>
-        {messagesByUser.map( (user, i) => <Components.user key={i} {...user} /> )}
+        {/*
+        {messages.map( (user, i) => <Components.user key={i} {...user} /> )}
+        */}
       </div>
     )
 
@@ -41,7 +46,7 @@ export class Container extends React.Component {
 export default connect(
   createStructuredSelector({
     dialogue: getAll,
-    messagesByUser: getMessagesByUser,
+    messages: getMessages,
     visited: hasVisited
   }),
   dispatch => bindActionCreators(actions, dispatch)
