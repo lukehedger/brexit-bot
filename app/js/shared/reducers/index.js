@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import { combineReducers } from 'redux-immutablejs'
+import routerReducer from './router'
 import * as dialogue from '../../dialogue'
 
 export default combineReducers({

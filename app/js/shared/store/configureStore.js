@@ -1,26 +1,26 @@
+import Immutable from 'immutable'
 import { createStore, applyMiddleware, compose } from 'redux';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga'
+import rootSaga from '../sagas'
 import rootReducer from '../reducers';
 import * as Storage from '../services/storage';
 import { STATE_KEY } from '../constants';
-
-import rootSaga from '../sagas'
 
 const logger = createLogger();
 const router = routerMiddleware(browserHistory);
 const saga = createSagaMiddleware()
 
 const finalCreateStore = compose(
-  applyMiddleware(router, logger, thunk, saga),
+  applyMiddleware(router, logger, saga),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 
 // persist stored state
-const initialState = Storage.getItem(STATE_KEY) || {};
+const persistState = Storage.getItem(STATE_KEY) || {}
+const initialState = Immutable.fromJS(persistState)
 
 export default function configureStore(state = initialState) {
 
@@ -32,8 +32,10 @@ export default function configureStore(state = initialState) {
   // store state on change
   store.subscribe( () => {
 
-    // TODO - how to store Immutable Maps? - USE: https://github.com/elgerlambert/redux-localstorage
-    // Storage.setItem(STATE_KEY, store.getState())
+    // remove routing from state before storing
+    let stateWithoutRouting = store.getState().delete('routing')
+
+    Storage.setItem(STATE_KEY, stateWithoutRouting.toJS())
 
   });
 

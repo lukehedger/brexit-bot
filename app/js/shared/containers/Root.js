@@ -7,7 +7,8 @@ import configureStore from '../store/configureStore';
 
 const store = configureStore();
 
-const history = syncHistoryWithStore(browserHistory, store);
+const selectLocationState = state => state.get('routing')
+const history = syncHistoryWithStore(browserHistory, store, { selectLocationState });
 
 export default class Root extends Component {
 

@@ -50,7 +50,6 @@
     "redux-immutablejs": "0.0.8",
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.10.4",
-    "redux-thunk": "^2.0.1",
     "reselect": "^2.5.1",
     "whatwg-fetch": "^1.0.0"
   }
