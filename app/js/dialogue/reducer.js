@@ -22,6 +22,10 @@ export default createReducer(initialState, {
   [actions.FETCH_POLL_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_POLL_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
+  [actions.FETCH_CHOICE_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_CHOICE_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_CHOICE_FAILURE]: (state, action) => state.merge({ error: action.payload }),
+
   [actions.FETCH_TOPIC_REQUEST]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_TOPIC_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_TOPIC_FAILURE]: (state, action) => state.merge({ error: action.payload }),
