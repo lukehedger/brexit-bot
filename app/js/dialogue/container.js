@@ -16,7 +16,7 @@ export class Container extends React.Component {
     // record new visit
     if (!visited) setVisit()
 
-    // TODO - get greeting based on `visited` -> /bot/greeting/:visited
+    // say hello :D
     fetchGreeting()
 
   }
@@ -25,7 +25,7 @@ export class Container extends React.Component {
 
     const { messagesByUser } = this.props
 
-    console.log(messagesByUser)
+    console.log(messagesByUser.toJS())
 
     return (
       <div>

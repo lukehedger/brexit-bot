@@ -15,6 +15,7 @@ export default createReducer(initialState, {
   [actions.FETCH_HUMAN_REQUEST]: (state, action) => state.merge({ ...action.payload }),
 
   [actions.FETCH_GREETING_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_GREETING_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
 
   [actions.FETCH_POLL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
 
