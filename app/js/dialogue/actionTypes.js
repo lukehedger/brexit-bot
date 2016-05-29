@@ -24,6 +24,10 @@ export const FETCH_SPURIOUS_REQUEST = `${name}/FETCH_SPURIOUS_REQUEST`
 export const FETCH_SPURIOUS_SUCCESS = `${name}/FETCH_SPURIOUS_SUCCESS`
 export const FETCH_SPURIOUS_FAILURE = `${name}/FETCH_SPURIOUS_FAILURE`
 
+export const FETCH_FAREWELL_REQUEST = `${name}/FETCH_FAREWELL_REQUEST`
+export const FETCH_FAREWELL_SUCCESS = `${name}/FETCH_FAREWELL_SUCCESS`
+export const FETCH_FAREWELL_FAILURE = `${name}/FETCH_FAREWELL_FAILURE`
+
 export const SET_VISIT = `${name}/SET_VISIT`
 
 export const SET_POLL_REQUEST = `${name}/SET_POLL_REQUEST`
@@ -35,3 +39,5 @@ export const SET_RESPONSE_SUCCESS = `${name}/SET_RESPONSE_SUCCESS`
 export const SET_RESPONSE_FAILURE = `${name}/SET_RESPONSE_FAILURE`
 
 export const PUSH_MESSAGE = `${name}/PUSH_MESSAGE`
+
+export const END_CONVO = `${name}/END_CONVO`

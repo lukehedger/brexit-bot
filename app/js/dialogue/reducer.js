@@ -7,6 +7,7 @@ export const initialState = Immutable.fromJS({
   messages: [],
   requesting: false,
   visited: false,
+  end: false,
   error: null
 })
 
@@ -34,6 +35,10 @@ export default createReducer(initialState, {
   [actions.FETCH_SPURIOUS_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_SPURIOUS_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
+  [actions.FETCH_FAREWELL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_FAREWELL_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_FAREWELL_FAILURE]: (state, action) => state.merge({ error: action.payload }),
+
   [actions.SET_VISIT]: (state, action) => state.merge({ ...action.payload }),
 
   [actions.SET_POLL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
@@ -45,5 +50,7 @@ export default createReducer(initialState, {
   [actions.SET_RESPONSE_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.PUSH_MESSAGE]: (state, action) => state.updateIn(['messages'], val => val.push({ ...action.payload })),
+
+  [actions.END_CONVO]: (state, action) => state.merge({ ...action.payload }),
 
 })

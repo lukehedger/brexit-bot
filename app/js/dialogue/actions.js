@@ -50,6 +50,16 @@ export function fetchSpurious() {
   }
 }
 
+export function fetchFarewell() {
+  return {
+    type: actions.FETCH_FAREWELL_REQUEST,
+    payload: {
+      requesting: true,
+      error: null
+    }
+  }
+}
+
 export function setVisit() {
   return {
     type: actions.SET_VISIT,
@@ -75,6 +85,15 @@ export function setResponse() {
     payload: {
       requesting: true,
       error: null
+    }
+  }
+}
+
+export function endConvo() {
+  return {
+    type: actions.END_CONVO,
+    payload: {
+      end: true
     }
   }
 }
