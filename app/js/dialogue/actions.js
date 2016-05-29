@@ -60,6 +60,16 @@ export function fetchFarewell() {
   }
 }
 
+export function fetchCheckIn() {
+  return {
+    type: actions.FETCH_CHECKIN_REQUEST,
+    payload: {
+      requesting: true,
+      error: null
+    }
+  }
+}
+
 export function setVisit() {
   return {
     type: actions.SET_VISIT,

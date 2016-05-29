@@ -39,6 +39,10 @@ export default createReducer(initialState, {
   [actions.FETCH_FAREWELL_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_FAREWELL_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
+  [actions.FETCH_CHECKIN_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_CHECKIN_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_CHECKIN_FAILURE]: (state, action) => state.merge({ error: action.payload }),
+
   [actions.SET_VISIT]: (state, action) => state.merge({ ...action.payload }),
 
   [actions.SET_POLL_REQUEST]: (state, action) => state.merge({ ...action.payload }),
