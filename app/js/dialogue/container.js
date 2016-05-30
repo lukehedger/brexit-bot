@@ -14,11 +14,11 @@ export class Container extends React.Component {
     const { actions, visited } = this.props
     const { fetchGreeting, setVisit } = actions
 
-    // record new visit
-    if (!visited) setVisit()
-
     // say hello :D
     fetchGreeting()
+
+    // record new visit
+    if (!visited) setVisit()
 
   }
 
