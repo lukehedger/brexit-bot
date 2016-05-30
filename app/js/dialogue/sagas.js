@@ -187,7 +187,7 @@ function* fetchBotSpurious(action) {
 
   try {
 
-    const res = yield call(API.get, 'bot/topic')
+    const res = yield call(API.get, 'bot/spurious')
     const data = yield res.json()
     const spurious = data.spurious
 
