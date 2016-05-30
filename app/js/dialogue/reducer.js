@@ -55,7 +55,7 @@ export default createReducer(initialState, {
   [actions.SET_RESPONSE_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
   [actions.SET_RESPONSE_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
-  [actions.PUSH_MESSAGE]: (state, action) => state.updateIn(['messages'], val => val.push({ ...action.payload })),
+  [actions.PUSH_MESSAGE]: (state, action) => state.updateIn(['messages'], val => val.push( Immutable.fromJS({ ...action.payload }) )),
 
   [actions.END_CONVO]: (state, action) => state.merge({ ...action.payload }),
 

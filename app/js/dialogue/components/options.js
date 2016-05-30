@@ -1,14 +1,14 @@
 import React from 'react'
 // import styles from 'css/components/options.css'
 
-const Component = (props) => {
+const Component = ({ options }) => {
 
   return (
     <div>
       options
     </div>
-  );
+  )
 
 }
 
-export default Component;
+export default Component

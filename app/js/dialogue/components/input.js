@@ -4,11 +4,9 @@ import React from 'react'
 const Component = (props) => {
 
   return (
-    <div>
-      input
-    </div>
-  );
+    <input type='text' />
+  )
 
 }
 
-export default Component;
+export default Component

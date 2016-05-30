@@ -1,14 +1,14 @@
 import React from 'react'
 // import styles from 'css/components/text.css'
 
-const Component = (props) => {
+const Component = ({ text }) => {
 
   return (
     <div>
-      text
+      {text}
     </div>
-  );
+  )
 
 }
 
-export default Component;
+export default Component

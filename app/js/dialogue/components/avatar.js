@@ -7,8 +7,8 @@ const Component = ({ username }) => {
     <div>
       avatar: {username}
     </div>
-  );
+  )
 
 }
 
-export default Component;
+export default Component

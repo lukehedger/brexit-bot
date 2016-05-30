@@ -1,14 +1,14 @@
 import React from 'react'
 // import styles from 'css/components/time.css'
 
-const Component = (props) => {
+const Component = ({ time }) => {
 
   return (
     <div>
-      time
+      {time}
     </div>
-  );
+  )
 
 }
 
-export default Component;
+export default Component

@@ -2,18 +2,38 @@ import React from 'react'
 import * as Components from './'
 // import styles from 'css/components/message.css'
 
-const Component = (props) => {
+const Component = ({ sender, time, type, body }) => {
 
-  // TODO - render components based on message type/content
+  const { text, image, video, audio, chart, options, source } = body
+  const hasOptions = options.length > 0
+
+  // TODO - also check if not latest message (select.getLatestMessage) - will feed into className
+  // const collapse = hasOptions
+
+  const renderText = text ? <Components.text text={text} /> : null
+  const renderImage = image ? <Components.image image={image} /> : null
+  const renderVideo = video ? <Components.video video={video} /> : null
+  const renderAudio = audio ? <Components.audio audio={audio} /> : null
+  const renderChart = chart ? <Components.chart chart={chart} /> : null
+  const renderOptions = hasOptions ? <Components.options body={body} /> : null
+  const renderCitation = source ? <Components.citation citation={source} /> : null
+  const renderInput = !hasOptions && type !== 'topic' ? <Components.input /> : null
 
   return (
     <div>
-      <Components.text />
-      <Components.options />
-      <Components.input />
+      <Components.avatar username={sender} />
+      <Components.time time={time} />
+      {renderText}
+      {renderImage}
+      {renderVideo}
+      {renderAudio}
+      {renderChart}
+      {renderOptions}
+      {renderCitation}
+      {renderInput}
     </div>
-  );
+  )
 
 }
 
-export default Component;
+export default Component

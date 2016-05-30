@@ -1,6 +1,8 @@
 import { takeEvery, takeLatest, delay } from 'redux-saga'
 import { call, put, fork, select } from 'redux-saga/effects'
 
+import cuid from 'cuid'
+
 import * as API from '../shared/services/api'
 import * as actions from './actionTypes'
 import { hasBeenPolled, hasVisited, isTheEnd } from './selectors'
@@ -9,11 +11,14 @@ import { hasBeenPolled, hasVisited, isTheEnd } from './selectors'
 // PUSH MESSAGE
 // -----
 
-function* pushMessage(sender, action) {
+function* pushMessage(sender, type, action) {
 
-  const { collapse, delay, message: body } = action.payload.incoming
+  const id = cuid()
+  const time = Date.now()
+  console.log(action.payload.incoming);
+  const { message: body } = action.payload.incoming
 
-  yield put({ type: actions.PUSH_MESSAGE, payload: { sender, body, collapse, delay } })
+  yield put({ type: actions.PUSH_MESSAGE, payload: { id, sender, time, type, body } })
 
 }
 
@@ -31,7 +36,7 @@ export function* greeting() {
 export function* watchGreeting() {
 
   // start pushBotMessage saga on dispatched FETCH_GREETING_SUCCESS action
-  yield* takeLatest(actions.FETCH_GREETING_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.FETCH_GREETING_SUCCESS, pushMessage, 'bot', 'greeting')
 
 }
 
@@ -66,7 +71,7 @@ export function* poll() {
 
 export function* watchPoll() {
 
-  yield* takeLatest(actions.FETCH_POLL_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.FETCH_POLL_SUCCESS, pushMessage, 'bot', 'poll')
 
 }
 
@@ -100,7 +105,7 @@ export function* choice() {
 
 export function* watchChoice() {
 
-  yield* takeLatest(actions.FETCH_CHOICE_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.FETCH_CHOICE_SUCCESS, pushMessage, 'bot', 'choice')
 
 }
 
@@ -134,7 +139,7 @@ export function* topic() {
 
 export function* watchTopic() {
 
-  yield* takeLatest(actions.FETCH_TOPIC_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.FETCH_TOPIC_SUCCESS, pushMessage, 'bot', 'topic')
 
   yield delay(5000)
   yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
@@ -172,7 +177,7 @@ export function* spurious() {
 
 export function* watchSpurious() {
 
-  yield* takeLatest(actions.FETCH_SPURIOUS_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.FETCH_SPURIOUS_SUCCESS, pushMessage, 'bot', 'spurious')
 
 }
 
@@ -206,7 +211,7 @@ export function* checkIn() {
 
 export function* watchCheckIn() {
 
-  yield* takeLatest(actions.FETCH_CHECKIN_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.FETCH_CHECKIN_SUCCESS, pushMessage, 'bot', 'checkin')
 
 }
 
@@ -240,7 +245,7 @@ export function* setPoll() {
 
 export function* watchSetPoll() {
 
-  yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'human')
+  yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'human', 'humanPoll')
 
   yield delay(1000)
 
@@ -288,7 +293,7 @@ export function* response() {
 
 export function* watchResponse() {
 
-  yield* takeLatest(actions.SET_RESPONSE_SUCCESS, pushMessage, 'bot')
+  yield* takeLatest(actions.SET_RESPONSE_SUCCESS, pushMessage, 'bot', 'humanResponse')
 
   yield delay(3000)
 

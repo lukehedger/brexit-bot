@@ -1,17 +1,25 @@
+import audio from './audio'
 import avatar from './avatar'
+import chart from './chart'
+import citation from './citation'
+import image from './image'
 import input from './input'
 import message from './message'
 import options from './options'
 import text from './text'
 import time from './time'
-import user from './user'
+import video from './video'
 
 export {
+  audio,
   avatar,
+  chart,
+  citation,
+  image,
   input,
   message,
   options,
   text,
   time,
-  user,
+  video,
 }

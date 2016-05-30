@@ -11,7 +11,8 @@ export class Container extends React.Component {
 
   componentWillMount() {
 
-    const { fetchGreeting, setVisit, visited } = this.props
+    const { actions, visited } = this.props
+    const { fetchGreeting, setVisit } = actions
 
     // record new visit
     if (!visited) setVisit()
@@ -25,17 +26,10 @@ export class Container extends React.Component {
 
     const { messages } = this.props
 
-    // console.log(messages.toJS())
-
-    // TODO - no longer messagesByUser, just an massive array of messages
-    // will need to rethink component structure (eg. message->avatar (display on condition?), time)
-
     return (
       <div>
         <h1>BrexitBot</h1>
-        {/*
-        {messages.map( (user, i) => <Components.user key={i} {...user} /> )}
-        */}
+        {messages.map( (message, i) => <Components.message key={i} {...message.toJS()} /> )}
       </div>
     )
 
@@ -49,5 +43,9 @@ export default connect(
     messages: getMessages,
     visited: hasVisited
   }),
-  dispatch => bindActionCreators(actions, dispatch)
+  dispatch => (
+    {
+      actions: bindActionCreators(actions, dispatch)
+    }
+  )
 )(Container)
