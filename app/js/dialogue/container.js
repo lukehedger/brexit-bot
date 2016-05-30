@@ -24,12 +24,12 @@ export class Container extends React.Component {
 
   render() {
 
-    const { messages } = this.props
+    const { actions, messages } = this.props
 
     return (
       <div>
         <h1>BrexitBot</h1>
-        {messages.map( (message, i) => <Components.message key={i} {...message.toJS()} /> )}
+        {messages.map( (message, i) => <Components.message key={i} {...message.toJS()} actions={actions} /> )}
       </div>
     )
 

@@ -9,7 +9,7 @@ import rootReducer from '../reducers';
 import * as Storage from '../services/storage';
 import { STATE_KEY } from '../constants';
 
-const logger = createLogger();
+const logger = createLogger({ collapsed: true });
 const router = routerMiddleware(browserHistory);
 const saga = createSagaMiddleware()
 

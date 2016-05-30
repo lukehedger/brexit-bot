@@ -15,7 +15,6 @@ function* pushMessage(sender, type, action) {
 
   const id = cuid()
   const time = Date.now()
-  console.log(action.payload.incoming);
   const { message: body } = action.payload.incoming
 
   yield put({ type: actions.PUSH_MESSAGE, payload: { id, sender, time, type, body } })
@@ -245,7 +244,7 @@ export function* setPoll() {
 
 export function* watchSetPoll() {
 
-  yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'human', 'humanPoll')
+  yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'bot', 'pollResult')
 
   yield delay(1000)
 
@@ -264,7 +263,7 @@ function* setHumanPoll(action) {
 
   try {
 
-    yield fork(pushMessage, ['human', action])
+    yield call(pushMessage, 'human', 'humanPoll', action)
 
     const { id, brexit } = action.payload.incoming
     const res = yield call(API.put, `/update/${id}`, { brexit })
@@ -293,7 +292,9 @@ export function* response() {
 
 export function* watchResponse() {
 
-  yield* takeLatest(actions.SET_RESPONSE_SUCCESS, pushMessage, 'bot', 'humanResponse')
+  yield* takeLatest(actions.SET_RESPONSE_SUCCESS, pushMessage, 'bot', 'sentiment')
+
+  // TODO - never gets to here WHY!?
 
   yield delay(3000)
 
@@ -312,10 +313,10 @@ function* setHumanResponse(action) {
 
   try {
 
-    yield fork(pushMessage, ['human', action])
+    yield call(pushMessage, 'human', 'humanResponse', action)
 
-    const { message: text } = action.payload.incoming
-    const res = yield call(API.get, `human/sentiment/${text}`)
+    const { message: { text } } = action.payload.incoming
+    const res = yield call(API.post, `human/sentiment/${text}`)
     const data = yield res.json()
     const sentiment = data.sentiment
 
