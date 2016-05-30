@@ -3,7 +3,7 @@ import { call, put, fork, select } from 'redux-saga/effects'
 
 import * as API from '../shared/services/api'
 import * as actions from './actionTypes'
-import { hasVisited, isTheEnd } from './selectors'
+import { hasBeenPolled, hasVisited, isTheEnd } from './selectors'
 
 // -----
 // PUSH MESSAGE
@@ -195,6 +195,40 @@ function* fetchBotSpurious(action) {
 }
 
 // -----
+// FETCH CHECKIN
+// -----
+
+export function* checkIn() {
+
+  yield* takeLatest(actions.FETCH_CHECKIN_REQUEST, fetchBotCheckIn)
+
+}
+
+export function* watchCheckIn() {
+
+  yield* takeLatest(actions.FETCH_CHECKIN_SUCCESS, pushMessage, 'bot')
+
+}
+
+function* fetchBotCheckIn(action) {
+
+  try {
+
+    const res = yield call(API.get, 'bot/checkin')
+    const data = yield res.json()
+    const checkIn = data.checkIn
+
+    yield put({ type: actions.FETCH_CHECKIN_SUCCESS, payload: { incoming: checkIn, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.FETCH_CHECKIN_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
 // SET POLL
 // -----
 
@@ -303,6 +337,8 @@ export default function* root() {
   yield fork(watchTopic)
   yield fork(spurious)
   yield fork(watchSpurious)
+  yield fork(checkIn)
+  yield fork(watchCheckIn)
   yield fork(setPoll)
   yield fork(watchSetPoll)
   yield fork(response)
