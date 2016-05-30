@@ -89,6 +89,40 @@ function* fetchBotPoll(action) {
 }
 
 // -----
+// FETCH CHOICE
+// -----
+
+export function* choice() {
+
+  yield* takeLatest(actions.FETCH_CHOICE_REQUEST, fetchBotChoice)
+
+}
+
+export function* watchChoice() {
+
+  yield* takeLatest(actions.FETCH_CHOICE_SUCCESS, pushMessage, 'bot')
+
+}
+
+function* fetchBotChoice(action) {
+
+  try {
+
+    const res = yield call(API.get, 'bot/choice')
+    const data = yield res.json()
+    const choice = data.choice
+
+    yield put({ type: actions.FETCH_CHOICE_SUCCESS, payload: { incoming: choice, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.FETCH_CHOICE_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
 // SET POLL
 // -----
 
@@ -183,6 +217,8 @@ export default function* root() {
   yield fork(watchGreeting)
   yield fork(poll)
   yield fork(watchPoll)
+  yield fork(choice)
+  yield fork(watchChoice)
   yield fork(setPoll)
   yield fork(watchSetPoll)
   yield fork(response)
