@@ -30,10 +30,11 @@ export function fetchPoll() {
   }
 }
 
-export function fetchTopic() {
+export function fetchTopic(incoming) {
   return {
     type: actions.FETCH_TOPIC_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }

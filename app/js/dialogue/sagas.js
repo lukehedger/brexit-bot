@@ -123,6 +123,44 @@ function* fetchBotChoice(action) {
 }
 
 // -----
+// FETCH TOPIC
+// -----
+
+export function* topic() {
+
+  yield* takeLatest(actions.FETCH_TOPIC_REQUEST, fetchBotTopic)
+
+}
+
+export function* watchTopic() {
+
+  yield* takeLatest(actions.FETCH_TOPIC_SUCCESS, pushMessage, 'bot')
+
+  yield delay(5000)
+  yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
+
+}
+
+function* fetchBotTopic(action) {
+
+  try {
+
+    const { name } = action.payload.incoming
+    const res = yield call(API.get, `bot/topic/${name}`)
+    const data = yield res.json()
+    const topic = data.topic
+
+    yield put({ type: actions.FETCH_TOPIC_SUCCESS, payload: { incoming: topic, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.FETCH_TOPIC_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
 // SET POLL
 // -----
 
@@ -155,6 +193,7 @@ function* setHumanPoll(action) {
 
     yield fork(pushMessage, ['human', action])
 
+    const { id, brexit } = action.payload.incoming
     const res = yield call(API.put, `/update/${id}`, { brexit })
     const data = yield res.json()
     const poll = data.poll
@@ -219,6 +258,8 @@ export default function* root() {
   yield fork(watchPoll)
   yield fork(choice)
   yield fork(watchChoice)
+  yield fork(topic)
+  yield fork(watchTopic)
   yield fork(setPoll)
   yield fork(watchSetPoll)
   yield fork(response)
