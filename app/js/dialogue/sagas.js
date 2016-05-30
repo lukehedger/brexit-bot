@@ -114,9 +114,11 @@ function* fetchBotChoice(action) {
 
     const res = yield call(API.get, 'bot/choice')
     const data = yield res.json()
-    const choice = data.choice
+    const options = data.topics
+    // TODO - could add `choices` collection to DB
+    const text = 'Choose a topic!'
 
-    yield put({ type: actions.FETCH_CHOICE_SUCCESS, payload: { incoming: choice, requesting: false, error: null } })
+    yield put({ type: actions.FETCH_CHOICE_SUCCESS, payload: { incoming: { message: { options, text }}, requesting: false, error: null } })
 
   } catch (e) {
 
@@ -140,9 +142,6 @@ export function* watchTopic() {
 
   yield* takeLatest(actions.FETCH_TOPIC_SUCCESS, pushMessage, 'bot', 'topic')
 
-  yield delay(5000)
-  yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
-
 }
 
 function* fetchBotTopic(action) {
@@ -155,6 +154,10 @@ function* fetchBotTopic(action) {
     const topic = data.topic
 
     yield put({ type: actions.FETCH_TOPIC_SUCCESS, payload: { incoming: topic, requesting: false, error: null } })
+
+    yield delay(5000)
+
+    yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
 
   } catch (e) {
 
@@ -220,7 +223,7 @@ function* fetchBotCheckIn(action) {
 
     const res = yield call(API.get, 'bot/checkin')
     const data = yield res.json()
-    const checkIn = data.checkIn
+    const checkIn = data.checkin
 
     yield put({ type: actions.FETCH_CHECKIN_SUCCESS, payload: { incoming: checkIn, requesting: false, error: null } })
 
@@ -246,17 +249,6 @@ export function* watchSetPoll() {
 
   yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'bot', 'pollResult')
 
-  yield delay(1000)
-
-  // could be opening poll, could be closing poll
-  const end = yield select(isTheEnd)
-
-  if (end) {
-    yield put({ type: actions.FETCH_CHOICE_REQUEST, payload: { requesting: true, error: null } })
-  } else {
-    yield put({ type: actions.FETCH_FAREWELL_REQUEST, payload: { requesting: true, error: null } })
-  }
-
 }
 
 function* setHumanPoll(action) {
@@ -271,6 +263,17 @@ function* setHumanPoll(action) {
     const poll = data.poll
 
     yield put({ type: actions.SET_POLL_SUCCESS, payload: { incoming: poll, polled: true, requesting: false, error: null } })
+
+    yield delay(1000)
+
+    // could be opening poll, could be closing poll
+    const end = yield select(isTheEnd)
+
+    if (end) {
+      yield put({ type: actions.FETCH_CHOICE_REQUEST, payload: { requesting: true, error: null } })
+    } else {
+      yield put({ type: actions.FETCH_FAREWELL_REQUEST, payload: { requesting: true, error: null } })
+    }
 
   } catch (e) {
 
@@ -294,19 +297,6 @@ export function* watchResponse() {
 
   yield* takeLatest(actions.SET_RESPONSE_SUCCESS, pushMessage, 'bot', 'sentiment')
 
-  // TODO - never gets to here WHY!?
-
-  yield delay(3000)
-
-  // could be response to poll, might not be though...
-  const polled = yield select(hasBeenPolled)
-
-  if (polled) {
-    yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
-  } else {
-    yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
-  }
-
 }
 
 function* setHumanResponse(action) {
@@ -321,6 +311,17 @@ function* setHumanResponse(action) {
     const sentiment = data.sentiment
 
     yield put({ type: actions.SET_RESPONSE_SUCCESS, payload: { incoming: sentiment, requesting: false, error: null } })
+
+    yield delay(1000)
+
+    // could be response to poll, might not be though...
+    const polled = yield select(hasBeenPolled)
+
+    if (polled) {
+      yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
+    } else {
+      yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
+    }
 
   } catch (e) {
 

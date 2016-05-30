@@ -5,12 +5,22 @@ const Component = ({ actions, options }) => {
 
   const { fetchChoice, fetchSpurious, fetchTopic, setPoll, endConvo } = actions
 
-  // TODO - render each option (with action={next})
-  // if option is a topic (how can i know?) then next=fetchTopic(name)
+  Component.fetchChoice = fetchChoice
+  Component.fetchSpurious = fetchSpurious
+  Component.fetchTopic = fetchTopic
+  Component.setPoll = setPoll
+  Component.endConvo = endConvo
+
+  const optionSubmit = (fn, args) => Component[fn](args)
 
   return (
     <div>
-      options
+      {options.map( (o, i) => {
+        const { next, text, name } = o
+        return (
+          <button key={i} onClick={ e => optionSubmit(next, { name }) }>{text}</button>
+        )
+      })}
     </div>
   )
 

@@ -1,5 +1,7 @@
 import * as actions from './actionTypes'
 
+// TODO - can this be removed?
+// plus - remove actions not exported (ie. only used by sagas, not components)
 export function fetchHuman() {
   return {
     type: actions.FETCH_HUMAN_REQUEST,
@@ -10,20 +12,22 @@ export function fetchHuman() {
   }
 }
 
-export function fetchGreeting() {
+export function fetchGreeting(incoming) {
   return {
     type: actions.FETCH_GREETING_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }
   }
 }
 
-export function fetchPoll() {
+export function fetchPoll(incoming) {
   return {
     type: actions.FETCH_POLL_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }
@@ -41,40 +45,44 @@ export function fetchTopic(incoming) {
   }
 }
 
-export function fetchSpurious() {
+export function fetchSpurious(incoming) {
   return {
     type: actions.FETCH_SPURIOUS_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }
   }
 }
 
-export function fetchFarewell() {
+export function fetchFarewell(incoming) {
   return {
     type: actions.FETCH_FAREWELL_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }
   }
 }
 
-export function fetchCheckIn() {
+export function fetchCheckIn(incoming) {
   return {
     type: actions.FETCH_CHECKIN_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }
   }
 }
 
-export function fetchChoice() {
+export function fetchChoice(incoming) {
   return {
     type: actions.FETCH_CHOICE_REQUEST,
     payload: {
+      incoming,
       requesting: true,
       error: null
     }

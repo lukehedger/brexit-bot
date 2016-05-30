@@ -19,6 +19,7 @@ const Component = ({ actions, sender, time, type, body }) => {
   const renderChart = chart ? <Components.chart chart={chart} /> : null
   const renderOptions = hasOptions ? <Components.options options={options} actions={actions} /> : null
   const renderCitation = source ? <Components.citation citation={source} /> : null
+  // TODO - need a better conditional to render input - maybe a DB flag? userCanRespond
   const renderInput = !hasOptions && type !== 'topic' ? <Components.input onSubmit={setResponse} /> : null
 
   return (
