@@ -161,6 +161,40 @@ function* fetchBotTopic(action) {
 }
 
 // -----
+// FETCH SPURIOUS
+// -----
+
+export function* spurious() {
+
+  yield* takeLatest(actions.FETCH_SPURIOUS_REQUEST, fetchBotSpurious)
+
+}
+
+export function* watchSpurious() {
+
+  yield* takeLatest(actions.FETCH_SPURIOUS_SUCCESS, pushMessage, 'bot')
+
+}
+
+function* fetchBotSpurious(action) {
+
+  try {
+
+    const res = yield call(API.get, 'bot/topic')
+    const data = yield res.json()
+    const spurious = data.spurious
+
+    yield put({ type: actions.FETCH_SPURIOUS_SUCCESS, payload: { incoming: spurious, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.FETCH_SPURIOUS_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
 // SET POLL
 // -----
 
@@ -260,6 +294,8 @@ export default function* root() {
   yield fork(watchChoice)
   yield fork(topic)
   yield fork(watchTopic)
+  yield fork(spurious)
+  yield fork(watchSpurious)
   yield fork(setPoll)
   yield fork(watchSetPoll)
   yield fork(response)
