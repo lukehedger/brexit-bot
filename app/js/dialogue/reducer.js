@@ -7,6 +7,7 @@ export const initialState = Immutable.fromJS({
   messages: [],
   requesting: false,
   visited: false,
+  polled: false,
   end: false,
   incoming: null,
   error: null

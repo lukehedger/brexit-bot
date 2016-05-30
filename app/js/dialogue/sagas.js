@@ -232,7 +232,7 @@ function* setHumanPoll(action) {
     const data = yield res.json()
     const poll = data.poll
 
-    yield put({ type: actions.SET_POLL_SUCCESS, payload: { incoming: poll, requesting: false, error: null } })
+    yield put({ type: actions.SET_POLL_SUCCESS, payload: { incoming: poll, polled: true, requesting: false, error: null } })
 
   } catch (e) {
 
@@ -256,9 +256,16 @@ export function* watchResponse() {
 
   yield* takeLatest(actions.SET_RESPONSE_SUCCESS, pushMessage, 'bot')
 
-  // TODO - this is only applicable when response is to greeting (maybe set a flag in state `hasBeenPolled` then if false do the below else do a checkin)
   yield delay(3000)
-  yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
+
+  // could be response to poll, might not be though...
+  const polled = yield select(hasBeenPolled)
+
+  if (polled) {
+    yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
+  } else {
+    yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
+  }
 
 }
 
