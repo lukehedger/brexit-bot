@@ -324,6 +324,16 @@ function* setHumanResponse(action) {
 
 }
 
+// -----
+// END CONVO
+// -----
+
+export function* endConvo() {
+
+  yield* takeLatest(actions.END_CONVO, fetchBotPoll)
+
+}
+
 // export the root saga containing forks of all the sagas
 export default function* root() {
 
@@ -343,5 +353,6 @@ export default function* root() {
   yield fork(watchSetPoll)
   yield fork(response)
   yield fork(watchResponse)
+  yield fork(endConvo)
 
 }
