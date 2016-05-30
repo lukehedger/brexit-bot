@@ -19,3 +19,16 @@ export function post(route, data) {
   })
 
 }
+
+export function put(route, data) {
+
+  return fetch(`${API}/${route}`, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+
+}

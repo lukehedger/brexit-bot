@@ -8,6 +8,7 @@ export const initialState = Immutable.fromJS({
   requesting: false,
   visited: false,
   end: false,
+  incoming: null,
   error: null
 })
 
