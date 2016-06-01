@@ -193,10 +193,6 @@ function* fetchBotSpurious(action) {
 
     yield put({ type: actions.FETCH_SPURIOUS_SUCCESS, payload: { incoming: spurious, requesting: false, error: null } })
 
-    yield delay(5000)
-
-    yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
-
   } catch (e) {
 
     yield put({ type: actions.FETCH_SPURIOUS_FAILURE, payload: new Error(e.message) })
