@@ -1,7 +1,17 @@
 import * as actions from './actionTypes'
 
-// TODO - can this be removed?
-// plus - remove actions not exported (ie. only used by sagas, not components)
+// TODO - remove actions not exported (ie. only used by sagas, not components)
+
+export function createHuman() {
+  return {
+    type: actions.CREATE_HUMAN_REQUEST,
+    payload: {
+      requesting: true,
+      error: null
+    }
+  }
+}
+
 export function fetchHuman() {
   return {
     type: actions.FETCH_HUMAN_REQUEST,

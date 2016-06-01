@@ -12,7 +12,7 @@ export class Container extends React.Component {
   componentWillMount() {
 
     const { actions, visited } = this.props
-    const { fetchGreeting, setVisit } = actions
+    const { fetchGreeting, fetchHuman, setVisit } = actions
 
     // say hello :D
     fetchGreeting()

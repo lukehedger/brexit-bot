@@ -5,7 +5,7 @@ import cuid from 'cuid'
 
 import * as API from '../shared/services/api'
 import * as actions from './actionTypes'
-import { hasBeenPolled, hasVisited, isTheEnd } from './selectors'
+import { getHuman, hasBeenPolled, hasVisited, isTheEnd } from './selectors'
 
 // -----
 // PUSH MESSAGE
@@ -247,7 +247,7 @@ export function* setPoll() {
 
 export function* watchSetPoll() {
 
-  yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'bot', 'pollResult')
+  yield* takeLatest(actions.SET_POLL_SUCCESS, pushMessage, 'bot', 'chart')
 
 }
 
@@ -255,14 +255,16 @@ function* setHumanPoll(action) {
 
   try {
 
-    yield call(pushMessage, 'human', 'humanPoll', action)
+    const human = yield select(getHuman)
+    const { text } = action.payload.incoming
+    let brexit = text === 'Brexit'
 
-    const { id, brexit } = action.payload.incoming
-    const res = yield call(API.put, `/update/${id}`, { brexit })
+    const res = yield call(API.put, `human/update/${human.get('id')}`, { brexit })
     const data = yield res.json()
-    const poll = data.poll
+    const chart = data.poll
+    const vote = `You voted for ${data.human.brexit ? 'Brexit' : 'Bremain'}`
 
-    yield put({ type: actions.SET_POLL_SUCCESS, payload: { incoming: poll, polled: true, requesting: false, error: null } })
+    yield put({ type: actions.SET_POLL_SUCCESS, payload: { incoming: { message: { chart, text: vote }}, polled: true, requesting: false, error: null } })
 
     yield delay(1000)
 
@@ -317,7 +319,7 @@ function* setHumanResponse(action) {
     // could be response to poll, might not be though...
     const polled = yield select(hasBeenPolled)
 
-    if (polled) {
+    if (!polled) {
       yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
     } else {
       yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
@@ -326,6 +328,79 @@ function* setHumanResponse(action) {
   } catch (e) {
 
     yield put({ type: actions.SET_RESPONSE_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
+// SET VISIT
+// -----
+
+export function* visit() {
+
+  yield* takeLatest(actions.SET_VISIT, setVisit)
+
+}
+
+function* setVisit(action) {
+
+  yield put({ type: actions.CREATE_HUMAN_REQUEST, payload: { requesting: true, error: null } })
+
+}
+
+// -----
+// FETCH HUMAN
+// -----
+
+export function* humanRead() {
+
+  yield* takeLatest(actions.FETCH_HUMAN_REQUEST, fetchHuman)
+
+}
+
+function* fetchHuman(action) {
+
+  try {
+
+    const { id } = action.payload.incoming
+    const res = yield call(API.post, `human/read/${id}`)
+    const data = yield res.json()
+    const human = data.human
+
+    yield put({ type: actions.FETCH_HUMAN_SUCCESS, payload: { human, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.FETCH_HUMAN_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
+// CREATE HUMAN
+// -----
+
+export function* humanCreate() {
+
+  yield* takeLatest(actions.CREATE_HUMAN_REQUEST, createHuman)
+
+}
+
+function* createHuman(action) {
+
+  try {
+
+    const res = yield call(API.post, 'human/create')
+    const data = yield res.json()
+    const human = data.human
+
+    yield put({ type: actions.CREATE_HUMAN_SUCCESS, payload: { human, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.CREATE_HUMAN_FAILURE, payload: new Error(e.message) })
 
   }
 
@@ -360,6 +435,9 @@ export default function* root() {
   yield fork(watchSetPoll)
   yield fork(response)
   yield fork(watchResponse)
+  yield fork(visit)
+  yield fork(humanRead)
+  yield fork(humanCreate)
   yield fork(endConvo)
 
 }

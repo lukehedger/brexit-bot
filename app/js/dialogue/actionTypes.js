@@ -1,5 +1,9 @@
 import { name } from './constants';
 
+export const CREATE_HUMAN_REQUEST = `${name}/CREATE_HUMAN_REQUEST`
+export const CREATE_HUMAN_SUCCESS = `${name}/CREATE_HUMAN_SUCCESS`
+export const CREATE_HUMAN_FAILURE = `${name}/CREATE_HUMAN_FAILURE`
+
 export const FETCH_HUMAN_REQUEST = `${name}/FETCH_HUMAN_REQUEST`
 export const FETCH_HUMAN_SUCCESS = `${name}/FETCH_HUMAN_SUCCESS`
 export const FETCH_HUMAN_FAILURE = `${name}/FETCH_HUMAN_FAILURE`

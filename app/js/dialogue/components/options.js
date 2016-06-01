@@ -18,7 +18,7 @@ const Component = ({ actions, options }) => {
       {options.map( (o, i) => {
         const { next, text, name } = o
         return (
-          <button key={i} onClick={ e => optionSubmit(next, { name }) }>{text}</button>
+          <button key={i} onClick={ e => optionSubmit(next, { name, text }) }>{text}</button>
         )
       })}
     </div>

@@ -5,6 +5,7 @@ import * as actions from './actionTypes'
 
 export const initialState = Immutable.fromJS({
   messages: [],
+  human: null,
   requesting: false,
   visited: false,
   polled: false,
@@ -15,7 +16,13 @@ export const initialState = Immutable.fromJS({
 
 export default createReducer(initialState, {
 
+  [actions.CREATE_HUMAN_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.CREATE_HUMAN_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.CREATE_HUMAN_FAILURE]: (state, action) => state.merge({ error: action.payload }),
+
   [actions.FETCH_HUMAN_REQUEST]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_HUMAN_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
+  [actions.FETCH_HUMAN_FAILURE]: (state, action) => state.merge({ error: action.payload }),
 
   [actions.FETCH_GREETING_REQUEST]: (state, action) => state.merge({ ...action.payload }),
   [actions.FETCH_GREETING_SUCCESS]: (state, action) => state.merge({ ...action.payload }),
