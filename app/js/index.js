@@ -11,12 +11,12 @@ let render = () => {
 }
 
 // Support hot reloading of components
-if (module.hot) {
-
-  module.hot.accept('./shared/containers/Root', () => {
-    setTimeout(render)
-  })
-
-}
+// if (module.hot) {
+//
+//   module.hot.accept('./shared/containers/Root', () => {
+//     setTimeout(render)
+//   })
+//
+// }
 
 render();
