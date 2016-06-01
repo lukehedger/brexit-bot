@@ -2,16 +2,16 @@ import React from 'react'
 import * as Components from './'
 // import styles from 'css/components/message.css'
 
-const Component = ({ actions, sender, time, type, body }) => {
+const Component = ({ actions, latestMessage, id, sender, time, type, body }) => {
 
   const { setResponse } = actions
 
   const { text, image, video, audio, chart, options, source } = body
-  const hasOptions = options && options.length > 0
+  const hasOptions = options && options.length > 0 || false
+  const isLatest = latestMessage.get('id') === id
 
-  // TODO - also check if not latest message (select.getLatestMessage) - will feed into className
-  // collapsing should hide options so can't be reselected
-  // const collapse = hasOptions
+  // TODO - feed to classNames
+  const collapse = hasOptions && !isLatest
 
   const renderText = text ? <Components.text text={text} /> : null
   const renderImage = image ? <Components.image image={image} /> : null

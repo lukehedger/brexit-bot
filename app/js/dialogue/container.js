@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import * as actions from './actions'
 import * as Components from './components'
-import { getAll, getMessages, hasVisited } from './selectors'
+import { getAll, getMessages, getLatestMessage, hasVisited } from './selectors'
 
 export class Container extends React.Component {
 
@@ -24,12 +24,12 @@ export class Container extends React.Component {
 
   render() {
 
-    const { actions, messages } = this.props
+    const { actions, messages, latestMessage } = this.props
 
     return (
       <div>
         <h1>BrexitBot</h1>
-        {messages.map( (message, i) => <Components.message key={i} {...message.toJS()} actions={actions} /> )}
+        {messages.map( (message, i) => <Components.message key={i} {...message.toJS()} actions={actions} latestMessage={latestMessage} /> )}
       </div>
     )
 
@@ -41,6 +41,7 @@ export default connect(
   createStructuredSelector({
     dialogue: getAll,
     messages: getMessages,
+    latestMessage: getLatestMessage,
     visited: hasVisited
   }),
   dispatch => (
