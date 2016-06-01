@@ -193,6 +193,10 @@ function* fetchBotSpurious(action) {
 
     yield put({ type: actions.FETCH_SPURIOUS_SUCCESS, payload: { incoming: spurious, requesting: false, error: null } })
 
+    yield delay(5000)
+
+    yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
+
   } catch (e) {
 
     yield put({ type: actions.FETCH_SPURIOUS_FAILURE, payload: new Error(e.message) })
@@ -236,6 +240,40 @@ function* fetchBotCheckIn(action) {
 }
 
 // -----
+// FETCH FAREWELL
+// -----
+
+export function* farewell() {
+
+  yield* takeLatest(actions.FETCH_FAREWELL_REQUEST, fetchBotFarewell)
+
+}
+
+export function* watchFarewell() {
+
+  yield* takeLatest(actions.FETCH_FAREWELL_SUCCESS, pushMessage, 'bot', 'farewell')
+
+}
+
+function* fetchBotFarewell(action) {
+
+  try {
+
+    const res = yield call(API.get, 'bot/farewell')
+    const data = yield res.json()
+    const farewell = data.farewell
+
+    yield put({ type: actions.FETCH_FAREWELL_SUCCESS, payload: { incoming: farewell, requesting: false, error: null } })
+
+  } catch (e) {
+
+    yield put({ type: actions.FETCH_FAREWELL_FAILURE, payload: new Error(e.message) })
+
+  }
+
+}
+
+// -----
 // SET POLL
 // -----
 
@@ -272,9 +310,9 @@ function* setHumanPoll(action) {
     const end = yield select(isTheEnd)
 
     if (end) {
-      yield put({ type: actions.FETCH_CHOICE_REQUEST, payload: { requesting: true, error: null } })
-    } else {
       yield put({ type: actions.FETCH_FAREWELL_REQUEST, payload: { requesting: true, error: null } })
+    } else {
+      yield put({ type: actions.FETCH_CHOICE_REQUEST, payload: { requesting: true, error: null } })
     }
 
   } catch (e) {
@@ -319,10 +357,10 @@ function* setHumanResponse(action) {
     // could be response to poll, might not be though...
     const polled = yield select(hasBeenPolled)
 
-    if (!polled) {
-      yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
-    } else {
+    if (polled) {
       yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
+    } else {
+      yield put({ type: actions.FETCH_POLL_REQUEST, payload: { requesting: true, error: null } })
     }
 
   } catch (e) {
@@ -431,6 +469,8 @@ export default function* root() {
   yield fork(watchSpurious)
   yield fork(checkIn)
   yield fork(watchCheckIn)
+  yield fork(farewell)
+  yield fork(watchFarewell)
   yield fork(setPoll)
   yield fork(watchSetPoll)
   yield fork(response)

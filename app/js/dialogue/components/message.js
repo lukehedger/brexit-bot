@@ -10,6 +10,7 @@ const Component = ({ actions, sender, time, type, body }) => {
   const hasOptions = options && options.length > 0
 
   // TODO - also check if not latest message (select.getLatestMessage) - will feed into className
+  // collapsing should hide options so can't be reselected
   // const collapse = hasOptions
 
   const renderText = text ? <Components.text text={text} /> : null
