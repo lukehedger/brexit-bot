@@ -20,7 +20,7 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
   const renderOptions = hasOptions ? <Components.options options={options} actions={actions} /> : null
   const renderCitation = source ? <Components.citation citation={source} /> : null
 
-  // TODO - this should always be rendered (at foot) and enabled/disabled and cleared after submit
+  // TODO - this should always be rendered (at foot) and enabled/disabled and cleared after submit -> as part of message, move up to container and use latestMessage type ?
   const renderInput = type === 'greeting' || type === 'spurious' ? <Components.input onSubmit={setResponse} /> : null
 
   return (

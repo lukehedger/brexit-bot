@@ -1,17 +1,5 @@
 import * as actions from './actionTypes'
 
-// TODO - remove actions not exported (ie. only used by sagas, not components)
-
-export function createHuman() {
-  return {
-    type: actions.CREATE_HUMAN_REQUEST,
-    payload: {
-      requesting: true,
-      error: null
-    }
-  }
-}
-
 export function fetchHuman() {
   return {
     type: actions.FETCH_HUMAN_REQUEST,
@@ -25,17 +13,6 @@ export function fetchHuman() {
 export function fetchGreeting(incoming) {
   return {
     type: actions.FETCH_GREETING_REQUEST,
-    payload: {
-      incoming,
-      requesting: true,
-      error: null
-    }
-  }
-}
-
-export function fetchPoll(incoming) {
-  return {
-    type: actions.FETCH_POLL_REQUEST,
     payload: {
       incoming,
       requesting: true,
@@ -58,28 +35,6 @@ export function fetchTopic(incoming) {
 export function fetchSpurious(incoming) {
   return {
     type: actions.FETCH_SPURIOUS_REQUEST,
-    payload: {
-      incoming,
-      requesting: true,
-      error: null
-    }
-  }
-}
-
-export function fetchFarewell(incoming) {
-  return {
-    type: actions.FETCH_FAREWELL_REQUEST,
-    payload: {
-      incoming,
-      requesting: true,
-      error: null
-    }
-  }
-}
-
-export function fetchCheckIn(incoming) {
-  return {
-    type: actions.FETCH_CHECKIN_REQUEST,
     payload: {
       incoming,
       requesting: true,

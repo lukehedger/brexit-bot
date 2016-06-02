@@ -115,7 +115,6 @@ function* fetchBotChoice(action) {
     const res = yield call(API.get, 'bot/choice')
     const data = yield res.json()
     const options = data.topics
-    // TODO - could add `choices` collection to DB
     const text = 'Choose a topic!'
 
     yield put({ type: actions.FETCH_CHOICE_SUCCESS, payload: { incoming: { message: { options, text }}, requesting: false, error: null } })
