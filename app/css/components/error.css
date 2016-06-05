@@ -1,0 +1,5 @@
+@value color-error from "../shared/settings.css";
+
+.base {
+  color: color-error;
+}

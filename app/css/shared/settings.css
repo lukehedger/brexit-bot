@@ -1,0 +1,26 @@
+/* SETTINGS */
+
+/* breakpoints */
+
+@value small: (max-width: 40em);
+@value above-small: (min-width: 40em);
+@value large: (min-width: 64em);
+@value retina: (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+
+/* dimensions */
+
+@value content-width: 1280px;
+@value gutter-side: 20px;
+@value gutter-vertical: 40px;
+
+/* fonts */
+
+@value font-size: 14px;
+
+/* colors */
+
+@value color-dark: #000000;
+@value color-light: #FFFFFF;
+@value color-primary: #000099;
+@value color-secondary: #FFCC00;
+@value color-error: indianred;

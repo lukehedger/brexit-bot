@@ -1,0 +1,5 @@
+/* TYPOGRAPHY */
+
+.body {
+  composes: font font-primary from "./common.css";
+}
