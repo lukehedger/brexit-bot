@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 
 // containers
 import App from './containers/App'
