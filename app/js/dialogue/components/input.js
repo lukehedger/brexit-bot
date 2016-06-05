@@ -1,7 +1,7 @@
 import React from 'react'
 // import styles from 'css/components/input.css'
 
-const Component = ({ onSubmit }) => {
+const Component = ({ disabled, onSubmit }) => {
 
   Component.onSubmit = onSubmit
 
@@ -18,7 +18,7 @@ const Component = ({ onSubmit }) => {
   }
 
   return (
-    <input type='text' onKeyUp={onKeyUp} />
+    <input type='text' onKeyUp={onKeyUp} disabled={disabled} />
   )
 
 }

@@ -1,4 +1,2 @@
-body {
-  /*color: #000099;*/
-  color: #FFCC00;
-}
+@import "./shared/reset.css";
+@import "./shared/global.css";
