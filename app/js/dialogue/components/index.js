@@ -1,6 +1,7 @@
 import audio from './audio'
 import avatar from './avatar'
 import chart from './chart'
+import chat from './chat'
 import citation from './citation'
 import image from './image'
 import input from './input'
@@ -14,6 +15,7 @@ export {
   audio,
   avatar,
   chart,
+  chat,
   citation,
   image,
   input,

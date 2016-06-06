@@ -8,7 +8,8 @@ const env = require('./env')
 const PATHS = {
   src: path.join(__dirname, '../app/js'),
   dist: path.join(__dirname, '../public'),
-  css: path.join(__dirname, '../app/css')
+  css: path.join(__dirname, '../app/css'),
+  img: path.join(__dirname, '../static/img')
 }
 
 module.exports = {
@@ -20,7 +21,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      css: PATHS.css
+      css: PATHS.css,
+      img: PATHS.img
     }
   },
   plugins: [
@@ -53,6 +55,13 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
       }
     ]
   },

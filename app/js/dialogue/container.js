@@ -23,6 +23,12 @@ export class Container extends React.Component {
 
   }
 
+  componentDidMount() {
+
+    // TODO - scroll to bottom
+
+  }
+
   render() {
 
     const { actions, messages, latestMessage } = this.props
@@ -31,11 +37,9 @@ export class Container extends React.Component {
     const inputDisabled = latestMessage && SHOW_INPUT_TYPES.indexOf(latestMessage.get('type')) < 0
 
     return (
-      <div>
+      <div className='dialogue'>
 
-        <h1>BrexitBot</h1>
-
-        {messages.map( (message, i) => <Components.message key={i} {...message.toJS()} actions={actions} latestMessage={latestMessage} /> )}
+        <Components.chat messages={messages} latestMessage={latestMessage} actions={actions} />
 
         <Components.input disabled={inputDisabled} onSubmit={setResponse} />
 
