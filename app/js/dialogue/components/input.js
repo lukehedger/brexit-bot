@@ -10,15 +10,18 @@ const Component = ({ disabled, onSubmit }) => {
 
     if (e.keyCode !== 13) return
 
-    let text = e.target.value
+    let text = Component._input.value
 
     // dispatch action
     Component.onSubmit({ message: { text } })
 
+    // clear input
+    Component._input.value = ''
+
   }
 
   return (
-    <input className={styles.base} type='text' onKeyUp={onKeyUp} disabled={disabled} />
+    <input className={styles.base} type='text' onKeyUp={onKeyUp} disabled={disabled} ref={ ref => Component._input = ref } />
   )
 
 }
