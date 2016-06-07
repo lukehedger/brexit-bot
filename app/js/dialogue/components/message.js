@@ -1,6 +1,10 @@
 import React from 'react'
+import classNames from 'classnames/bind'
+import styles from 'css/components/dialogue/message.css'
+
 import * as Components from './'
-// import styles from 'css/components/message.css'
+
+const cx = classNames.bind(styles)
 
 const Component = ({ actions, latestMessage, id, sender, time, type, body }) => {
 
@@ -19,10 +23,14 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
   const renderOptions = hasOptions ? <Components.options options={options} actions={actions} /> : null
   const renderCitation = source ? <Components.citation citation={source} /> : null
 
+  let className = cx({
+    base: true,
+    [`${sender}`]: sender
+  })
+
   return (
-    <div>
-      <Components.avatar username={sender} />
-      <Components.time time={time} />
+    <div className={className}>
+      {/* <Components.avatar username={sender} /> */}
       {renderText}
       {renderImage}
       {renderVideo}
@@ -30,6 +38,7 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
       {renderChart}
       {renderOptions}
       {renderCitation}
+      <Components.time time={time} />
     </div>
   )
 

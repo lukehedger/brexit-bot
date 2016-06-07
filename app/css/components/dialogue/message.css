@@ -1,0 +1,25 @@
+@value color-primary, color-secondary from "../../shared/settings.css";
+@value radius: 15px;
+
+.base {
+  min-width: 50%;
+  max-width: 75%;
+  margin: 20px;
+  padding: 20px;
+  border-bottom-right-radius: radius;
+  border-bottom-left-radius: radius;
+  box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.bot {
+  border-top-right-radius: radius;
+  align-self: flex-start;
+  background-color: color-primary;
+  color: white;
+}
+
+.human {
+  border-top-left-radius: radius;
+  align-self: flex-end;
+  background-color: color-secondary;
+}
