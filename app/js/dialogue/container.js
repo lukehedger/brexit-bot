@@ -23,9 +23,10 @@ export class Container extends React.Component {
 
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
 
-    // TODO - scroll to bottom
+    // scroll to bottom
+    window.scrollTo(0, document.body.scrollHeight)
 
   }
 
