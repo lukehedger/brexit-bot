@@ -1,5 +1,5 @@
 .base {
-  composes: wrapper from "../shared/layout.css";
+  /*composes: wrapper from "../shared/layout.css";*/
 }
 
 .logo {

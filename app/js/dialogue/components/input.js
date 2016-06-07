@@ -1,5 +1,5 @@
 import React from 'react'
-// import styles from 'css/components/input.css'
+import styles from 'css/components/dialogue/input.css'
 
 const Component = ({ disabled, onSubmit }) => {
 
@@ -18,7 +18,7 @@ const Component = ({ disabled, onSubmit }) => {
   }
 
   return (
-    <input type='text' onKeyUp={onKeyUp} disabled={disabled} />
+    <input className={styles.base} type='text' onKeyUp={onKeyUp} disabled={disabled} />
   )
 
 }
