@@ -70,7 +70,7 @@ export function* poll() {
 
 export function* watchPoll() {
 
-  yield* takeLatest(actions.FETCH_POLL_SUCCESS, pushMessage, 'bot', 'poll')
+  yield* takeLatest(actions.FETCH_POLL_SUCCESS, pushMessage, 'human', 'poll')
 
 }
 
@@ -104,7 +104,7 @@ export function* choice() {
 
 export function* watchChoice() {
 
-  yield* takeLatest(actions.FETCH_CHOICE_SUCCESS, pushMessage, 'bot', 'choice')
+  yield* takeLatest(actions.FETCH_CHOICE_SUCCESS, pushMessage, 'human', 'choice')
 
 }
 
@@ -212,7 +212,7 @@ export function* checkIn() {
 
 export function* watchCheckIn() {
 
-  yield* takeLatest(actions.FETCH_CHECKIN_SUCCESS, pushMessage, 'bot', 'checkin')
+  yield* takeLatest(actions.FETCH_CHECKIN_SUCCESS, pushMessage, 'human', 'checkin')
 
 }
 
