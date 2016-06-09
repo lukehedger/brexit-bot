@@ -66,7 +66,6 @@ module.exports = {
     ]
   },
   postcss: [
-    require('postcss-cssnext'),
-    require('postcss-color-function')
+    require('postcss-cssnext')
   ]
 };
