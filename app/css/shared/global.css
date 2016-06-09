@@ -1,6 +1,6 @@
 /* GLOBAL */
 
-@value color-secondary from "./settings.css";
+@value color-secondary-alt from "./settings.css";
 
 :global body {
   height: 100%;
@@ -9,5 +9,5 @@
 
 :global #root {
   height: 100%;
-  background-color: color(yellow lightness(90));
+  background-color: color-secondary-alt;
 }

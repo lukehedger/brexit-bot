@@ -19,8 +19,10 @@
 
 /* colors */
 
-@value color-dark: #000000;
+@value color-dark: #1E051A;
 @value color-light: #FFFFFF;
 @value color-primary: #000099;
+@value color-primary-alt: #0584B1;
 @value color-secondary: #FFCC00;
+@value color-secondary-alt: #fab135;
 @value color-error: indianred;

@@ -1,11 +1,13 @@
 .base {
-  /*composes: wrapper from "../shared/layout.css";*/
+  padding: 20px;
 }
 
 .logo {
   width: 160px;
   height: 160px;
   margin: 0 auto;
-  background: url('img/logo.png') no-repeat 0 0;
+  padding: 20px;
+  border-radius: 50%;
+  background: url('img/logo.png') no-repeat 0 0 color(white a(0.7));
   background-size: cover;
 }
