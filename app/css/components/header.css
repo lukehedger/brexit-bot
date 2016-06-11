@@ -8,6 +8,6 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 50%;
-  background: url('img/logo.png') no-repeat 0 0 color(white a(0.7));
+  background: url('img/logo.png') no-repeat 0 0 color(white a(0.4));
   background-size: cover;
 }
