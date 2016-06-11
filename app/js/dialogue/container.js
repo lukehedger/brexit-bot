@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import * as actions from './actions'
 import * as Components from './components'
-import { getAll, getMessages, getLatestMessage, hasVisited } from './selectors'
+import * as selectors from './selectors'
 import { SHOW_INPUT_TYPES } from './constants'
 
 // transitions
@@ -36,7 +36,7 @@ export class Container extends React.Component {
 
   render() {
 
-    const { actions, messages, latestMessage } = this.props
+    const { actions, messages, latestMessage, requesting } = this.props
     const { setResponse } = actions
 
     const inputDisabled = latestMessage && SHOW_INPUT_TYPES.indexOf(latestMessage.get('type')) < 0
@@ -45,7 +45,7 @@ export class Container extends React.Component {
     return (
       <div className='dialogue' style={{paddingBottom: '40px'}}>
 
-        <Components.chat messages={messages} latestMessage={latestMessage} actions={actions} />
+        <Components.chat messages={messages} latestMessage={latestMessage} isLoading={requesting} actions={actions} />
 
         <CSSTransitionGroup transitionName={transitions} transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={500}>
           { renderInput }
@@ -60,10 +60,11 @@ export class Container extends React.Component {
 
 export default connect(
   createStructuredSelector({
-    dialogue: getAll,
-    messages: getMessages,
-    latestMessage: getLatestMessage,
-    visited: hasVisited
+    dialogue: selectors.getAll,
+    messages: selectors.getMessages,
+    latestMessage: selectors.getLatestMessage,
+    visited: selectors.hasVisited,
+    requesting: selectors.isRequesting
   }),
   dispatch => (
     {

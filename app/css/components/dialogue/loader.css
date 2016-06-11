@@ -1,0 +1,11 @@
+@value color-light, color-primary-alt from "../../shared/settings.css";
+
+.base {
+  width: 25%;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 20px;
+  align-self: flex-start;
+  background: url('img/spinner.gif') no-repeat center color-primary-alt;
+  background-size: 15%;
+}
