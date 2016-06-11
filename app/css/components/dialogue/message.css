@@ -4,11 +4,15 @@
 .base {
   min-width: 50%;
   max-width: 75%;
-  margin: 20px;
+  margin: 20px 20px 5px;
   padding: 20px;
   border-bottom-right-radius: radius;
   border-bottom-left-radius: radius;
   word-wrap: break-word;
+
+  &:last-of-type {
+    margin-bottom: 20px;
+  }
 }
 
 .bot {

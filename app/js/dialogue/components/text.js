@@ -1,12 +1,12 @@
 import React from 'react'
-// import styles from 'css/components/text.css'
+import styles from 'css/components/dialogue/text.css'
 
 const Component = ({ text }) => {
 
   return (
-    <div>
+    <p className={styles.base}>
       {text}
-    </div>
+    </p>
   )
 
 }
