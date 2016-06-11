@@ -32,10 +32,10 @@ export default function configureStore(state = initialState) {
   // store state on change
   store.subscribe( () => {
 
-    // remove routing from state before storing
-    let stateWithoutRouting = store.getState().delete('routing')
+    // remove routing and clear messages from state before storing
+    let stateTrimmed = store.getState().delete('routing').setIn(['dialogue', 'messages'], Immutable.fromJS([]))
 
-    Storage.setItem(STATE_KEY, stateWithoutRouting.toJS())
+    Storage.setItem(STATE_KEY, stateTrimmed.toJS())
 
   });
 
