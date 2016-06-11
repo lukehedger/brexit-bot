@@ -19,10 +19,12 @@
 
 /* colors */
 
-@value color-dark: #1E051A;
-@value color-light: #FFFFFF;
+@value color-dark: #50514F;
+@value color-dark-alt: #5D737E;
+@value color-light: #F1FAEE;
 @value color-primary: #000099;
-@value color-primary-alt: #0584B1;
+@value color-primary-alt: #247BA0;
 @value color-secondary: #FFCC00;
-@value color-secondary-alt: #fab135;
-@value color-error: indianred;
+@value color-secondary-alt: #FFE066;
+@value color-accent: #A8DADC;
+@value color-error: #F25F5C;

@@ -1,5 +1,9 @@
 .base {
-  margin-bottom: 100px;
+  width: 90%;
+  border-radius: 40px;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }

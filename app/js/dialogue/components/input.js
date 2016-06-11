@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from 'css/components/dialogue/input.css'
 
-const Component = ({ disabled, onSubmit }) => {
+const Component = ({ onSubmit }) => {
 
   Component.onSubmit = onSubmit
 
@@ -21,7 +21,7 @@ const Component = ({ disabled, onSubmit }) => {
   }
 
   return (
-    <input className={styles.base} type='text' onKeyUp={onKeyUp} disabled={disabled} ref={ ref => Component._input = ref } />
+    <input className={styles.base} type="text" placeholder="Répondez s'il vous plaît" onKeyUp={onKeyUp} ref={ ref => Component._input = ref } autoFocus />
   )
 
 }

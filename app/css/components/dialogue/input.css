@@ -1,6 +1,15 @@
+@value color-dark-alt, color-light from "../../shared/settings.css";
+
 .base {
   width: 100%;
-  padding: 10px 15px;
+  border: 0;
+  padding: 20px 5%;
+  line-height: 1;
+  font-size: 26px;
   position: fixed;
   bottom: 0;
+  color: color-light;
+  background-color: color-dark-alt;
+  outline: 0;
+  box-shadow: 0px -15px 20px 0px color(#F1FAEE a(0.5));
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { bindActionCreators } from 'redux'
 import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux'
@@ -7,6 +8,9 @@ import * as actions from './actions'
 import * as Components from './components'
 import { getAll, getMessages, getLatestMessage, hasVisited } from './selectors'
 import { SHOW_INPUT_TYPES } from './constants'
+
+// transitions
+import transitions from 'css/transitions/slideup.css'
 
 export class Container extends React.Component {
 
@@ -36,13 +40,16 @@ export class Container extends React.Component {
     const { setResponse } = actions
 
     const inputDisabled = latestMessage && SHOW_INPUT_TYPES.indexOf(latestMessage.get('type')) < 0
+    const renderInput = !inputDisabled ? <Components.input onSubmit={setResponse} /> : null
 
     return (
-      <div className='dialogue'>
+      <div className='dialogue' style={{paddingBottom: '40px'}}>
 
         <Components.chat messages={messages} latestMessage={latestMessage} actions={actions} />
 
-        <Components.input disabled={inputDisabled} onSubmit={setResponse} />
+        <CSSTransitionGroup transitionName={transitions} transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={500}>
+          { renderInput }
+        </CSSTransitionGroup>
 
       </div>
     )
