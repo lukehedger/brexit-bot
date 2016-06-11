@@ -3,7 +3,7 @@ import styles from 'css/components/dialogue/options.css'
 
 import Radio from './radio'
 
-const Component = ({ actions, options }) => {
+const Component = ({ actions, options, disabled }) => {
 
   const { fetchChoice, fetchSpurious, fetchTopic, setPoll, endConvo } = actions
 
@@ -17,7 +17,7 @@ const Component = ({ actions, options }) => {
 
   return (
     <div className={styles.base}>
-      {options.map( (o, i) => <Radio key={i} callback={optionSubmit} { ...o }  />)}
+      {options.map( (o, i) => <Radio key={i} callback={optionSubmit} { ...o } disabled={disabled}  />)}
     </div>
   )
 

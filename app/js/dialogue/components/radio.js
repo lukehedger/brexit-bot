@@ -4,14 +4,21 @@ import styles from 'css/components/dialogue/radio.css'
 
 const cx = classNames.bind(styles)
 
-const Component = ({ callback, next, name, text }) => {
+const Component = ({ callback, next, name, text, disabled }) => {
 
   Component.callback = callback
 
-  const handleClick = e => Component.callback(next, { name, text })
+  const handleClick = e => {
+
+    if (disabled) return
+
+    Component.callback(next, { name, text })
+
+  }
 
   let className = cx({
-    base: true
+    base: true,
+    disabled
   })
 
   const labelName = text.replace(/\s/g, '')

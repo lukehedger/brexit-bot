@@ -10,6 +10,7 @@
   }
 
   & label {
+    border: 2px solid transparent;
     border-radius: 20px;
     padding: 10px;
     display: block;
@@ -29,8 +30,12 @@
   }
 
   & input[type='radio']:checked + label {
-    border: 2px solid color-light;
+    border-color: color-light;
     background-color: color-secondary;
     color: color-dark;
   }
+}
+
+.disabled {
+  pointer-events: none;
 }

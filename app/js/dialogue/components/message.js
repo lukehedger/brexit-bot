@@ -12,7 +12,6 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
 
   const hasOptions = options && options.length > 0 || false
   const isLatest = latestMessage.get('id') === id
-  // TODO - feed to classNames
   const disabled = hasOptions && !isLatest
 
   const renderText = text ? <Components.text text={text} /> : null
@@ -20,7 +19,7 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
   const renderVideo = video ? <Components.video video={video} /> : null
   const renderAudio = audio ? <Components.audio audio={audio} /> : null
   const renderChart = chart ? <Components.chart chart={chart} /> : null
-  const renderOptions = hasOptions ? <Components.options options={options} actions={actions} /> : null
+  const renderOptions = hasOptions ? <Components.options options={options} actions={actions} disabled={disabled} /> : null
   const renderCitation = source ? <Components.citation citation={source} /> : null
 
   let className = cx({
