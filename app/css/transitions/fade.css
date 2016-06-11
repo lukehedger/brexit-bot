@@ -1,6 +1,6 @@
 /* TRANSITION : fade */
 
-.enter {
+.appear, .enter {
   opacity: 0.01;
 
   &Active {

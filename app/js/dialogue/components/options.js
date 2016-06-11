@@ -1,5 +1,7 @@
 import React from 'react'
-// import styles from 'css/components/options.css'
+import styles from 'css/components/dialogue/options.css'
+
+import Radio from './radio'
 
 const Component = ({ actions, options }) => {
 
@@ -14,13 +16,8 @@ const Component = ({ actions, options }) => {
   const optionSubmit = (fn, args) => Component[fn](args)
 
   return (
-    <div>
-      {options.map( (o, i) => {
-        const { next, text, name } = o
-        return (
-          <button key={i} onClick={ e => optionSubmit(next, { name, text }) }>{text}</button>
-        )
-      })}
+    <div className={styles.base}>
+      {options.map( (o, i) => <Radio key={i} callback={optionSubmit} { ...o }  />)}
     </div>
   )
 

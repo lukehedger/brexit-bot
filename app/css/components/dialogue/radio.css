@@ -1,0 +1,36 @@
+@value color-dark, color-light, color-secondary from "../../shared/settings.css";
+
+.base {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  & label {
+    border-radius: 20px;
+    padding: 10px;
+    display: block;
+    background-color: color(#FFCC00 a(0.5));
+    color: color(#50514F a(0.5));
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover, &:focus {
+      background-color: color-secondary;
+      color: color-dark;
+    }
+  }
+
+  & input[type='radio'] {
+    display: none;
+  }
+
+  & input[type='radio']:checked + label {
+    border: 2px solid color-light;
+    background-color: color-secondary;
+    color: color-dark;
+  }
+}
