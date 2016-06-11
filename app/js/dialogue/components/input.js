@@ -12,6 +12,8 @@ const Component = ({ onSubmit }) => {
 
     let text = Component._input.value
 
+    if (!text) return
+
     // dispatch action
     Component.onSubmit({ message: { text } })
 
