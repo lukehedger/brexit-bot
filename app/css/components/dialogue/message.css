@@ -1,4 +1,4 @@
-@value color-primary, color-secondary from "../../shared/settings.css";
+@value color-dark, color-light, color-primary-alt, color-secondary-alt from "../../shared/settings.css";
 @value radius: 15px;
 
 .base {
@@ -15,12 +15,14 @@
 .bot {
   border-top-right-radius: radius;
   align-self: flex-start;
-  background-color: color-primary;
-  color: white;
+  background-color: color-primary-alt;
+  color: color-light;
 }
 
 .human {
   border-top-left-radius: radius;
   align-self: flex-end;
-  background-color: color-secondary;
+  background-color: color-secondary-alt;
+  color: color-dark;
+  text-align: right;
 }
