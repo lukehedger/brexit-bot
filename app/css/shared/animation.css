@@ -1,0 +1,10 @@
+/* ANIMATION */
+
+.creep {
+  animation: creep 0.5s 1 forwards ease-in-out;
+}
+
+@keyframes creep {
+  from { transform: translateY(10px); opacity: 0.01; }
+  to { transform: translateY(0); opacity: 1; }
+}
