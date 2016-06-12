@@ -10,4 +10,11 @@
   border-radius: 50%;
   background: url('img/logo.png') no-repeat 0 0 color(white a(0.4));
   background-size: cover;
+  cursor: cell;
+  transition: 1s ease-in-out;
+
+  &:hover {
+    transform: rotate(720deg);
+    filter: blur(2px);
+  }
 }
