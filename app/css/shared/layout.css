@@ -1,8 +1,8 @@
 /* LAYOUT */
 
-@value content-width as width, gutter-vertical from "./settings.css";
+@value content-width as width, content-max-width as max-width from "./settings.css";
 
 .wrapper {
-  max-width: width;
-  margin: gutter-vertical auto;
+  width: width;
+  max-width: max-width;
 }

@@ -23,7 +23,7 @@ const Component = ({ onSubmit }) => {
   }
 
   return (
-    <input className={styles.base} type="text" placeholder="Répondez s'il vous plaît" onKeyUp={onKeyUp} ref={ ref => Component._input = ref } autoFocus />
+    <input className={styles.base} type="text" placeholder="Répondez s'il vous plaît" onKeyUp={onKeyUp} ref={ ref => Component._input = ref } autoFocus tabIndex="1" />
   )
 
 }

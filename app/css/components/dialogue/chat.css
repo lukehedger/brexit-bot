@@ -1,6 +1,8 @@
+@value radius from "../../shared/settings.css";
+
 .base {
-  width: 90%;
-  border-radius: 40px;
+  composes: wrapper from "../../shared/layout.css";
+  border-radius: radius;
   margin: 0 auto;
   padding: 20px;
   display: flex;

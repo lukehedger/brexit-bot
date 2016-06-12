@@ -9,9 +9,11 @@
 
 /* dimensions */
 
-@value content-width: 1280px;
+@value content-width: 90%;
+@value content-max-width: 700px;
 @value gutter-side: 20px;
 @value gutter-vertical: 20px;
+@value radius: 40px;
 
 /* fonts */
 

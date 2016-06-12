@@ -1,19 +1,19 @@
 /* TRANSITION : slideup */
 
 .appear, .enter {
-  transform: translateY(100%);
+  transform: translateX(-50%) translateY(100%);
 
   &Active {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     transition: transform 300ms cubic-bezier(.19,.2,.1,.82);
   }
 }
 
 .leave {
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 
   &Active {
-    transform: translateY(100%);
+    transform: translateX(-50%) translateY(100%);
     transition: transform 500ms cubic-bezier(.19,.2,.1,.82);
   }
 }

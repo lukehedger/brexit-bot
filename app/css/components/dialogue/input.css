@@ -1,14 +1,17 @@
-@value color-dark, color-light from "../../shared/settings.css";
+@value content-width as width, color-dark, color-light from "../../shared/settings.css";
 
 .base {
-  width: 100%;
+  composes: wrapper from "../../shared/layout.css";
   border: 0;
   padding: 20px 5%;
   line-height: 1;
   font-size: 26px;
   position: fixed;
   bottom: 0;
-  color: color-light;
-  background-color: color-dark;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: color-dark;
+  box-shadow: 0px 0px 15px 1px color(black a(0.1));
   outline: 0;
 }
