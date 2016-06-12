@@ -40,7 +40,8 @@ module.exports = {
     }),
     new ExtractTextPlugin('style.css', { allChunks: true }),
     new HtmlWebpackPlugin({
-      template: 'app/index.html'
+      template: 'app/index.html',
+      favicon: 'static/img/favicon.png'
     })
   ],
   module: {

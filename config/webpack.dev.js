@@ -32,7 +32,8 @@ module.exports = {
     }),
     new CleanPlugin(['index.html', 'bundle.js', 'bundle.js.map', 'style.css', 'style.css.map'], PATHS.dist),
     new HtmlWebpackPlugin({
-      template: 'app/index.html'
+      template: 'app/index.html',
+      favicon: 'static/img/favicon.png'
     })
   ],
   devServer: {
