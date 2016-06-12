@@ -9,12 +9,22 @@ import rootReducer from '../reducers';
 import * as Storage from '../services/storage';
 import { STATE_KEY } from '../constants';
 
-const logger = createLogger({ collapsed: true });
+// middleware
 const router = routerMiddleware(browserHistory);
 const saga = createSagaMiddleware()
 
+let middleware = [
+  router, saga
+]
+
+// logger middleware in development
+if (process.env.NODE_ENV === 'development') {
+  const logger = createLogger({ collapsed: true });
+  middleware.push(logger)
+}
+
 const finalCreateStore = compose(
-  applyMiddleware(router, logger, saga),
+  applyMiddleware(...middleware),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 
