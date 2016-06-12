@@ -154,7 +154,7 @@ function* fetchBotTopic(action) {
 
     yield put({ type: actions.FETCH_TOPIC_SUCCESS, payload: { incoming: topic, requesting: false, error: null } })
 
-    yield delay(5000)
+    yield delay(7500)
 
     yield put({ type: actions.FETCH_CHECKIN_REQUEST, payload: { requesting: true, error: null } })
 
