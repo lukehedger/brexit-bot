@@ -3,6 +3,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import createLogger from 'redux-logger';
+import { track } from '../services/tracking'
+import analyticsMiddleware from 'redux-analytics'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from '../sagas'
 import rootReducer from '../reducers';
@@ -10,11 +12,12 @@ import * as Storage from '../services/storage';
 import { STATE_KEY } from '../constants';
 
 // middleware
+const analytics = analyticsMiddleware(({ type, payload }) => track(type, payload))
 const router = routerMiddleware(browserHistory);
 const saga = createSagaMiddleware()
 
 let middleware = [
-  router, saga
+  analytics, router, saga
 ]
 
 // logger middleware in development

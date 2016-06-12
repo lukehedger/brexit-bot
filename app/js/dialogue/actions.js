@@ -28,6 +28,14 @@ export function fetchTopic(incoming) {
       incoming,
       requesting: true,
       error: null
+    },
+    meta: {
+      analytics: {
+        type: 'topic',
+        payload: {
+          name: incoming.name
+        }
+      }
     }
   }
 }
@@ -81,6 +89,14 @@ export function setResponse(incoming) {
       incoming,
       requesting: true,
       error: null
+    },
+    meta: {
+      analytics: {
+        type: 'response',
+        payload: {
+          name: incoming.message.text
+        }
+      }
     }
   }
 }
