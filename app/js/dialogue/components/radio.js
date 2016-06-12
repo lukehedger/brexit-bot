@@ -1,4 +1,5 @@
 import React from 'react'
+import cuid from 'cuid'
 import classNames from 'classnames/bind'
 import styles from 'css/components/dialogue/radio.css'
 
@@ -21,7 +22,7 @@ const Component = ({ callback, next, name, text, disabled }) => {
     disabled
   })
 
-  const labelName = text.replace(/\s/g, '')
+  const labelName = text.replace(/\s/g, '') + cuid()
 
   return (
     <div className={className} onClick={handleClick}>
