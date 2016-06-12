@@ -6,9 +6,7 @@ import * as Components from './'
 
 const cx = classNames.bind(styles)
 
-const Component = ({ actions, latestMessage, id, sender, time, type, body }) => {
-
-  const { text, image, video, audio, chart, options, source } = body
+const Component = ({ actions, latestMessage, id, sender, time, type, body: { text, image, embed, chart, options, source } }) => {
 
   const hasOptions = options && options.length > 0 || false
   const isLatest = latestMessage.get('id') === id
@@ -16,8 +14,7 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
 
   const renderText = text ? <Components.text text={text} /> : null
   const renderImage = image ? <Components.image image={image} /> : null
-  const renderVideo = video ? <Components.video video={video} /> : null
-  const renderAudio = audio ? <Components.audio audio={audio} /> : null
+  const renderEmbed = embed ? <Components.embed embed={embed} /> : null
   const renderChart = chart ? <Components.chart chart={chart} /> : null
   const renderOptions = hasOptions ? <Components.options options={options} actions={actions} disabled={disabled} /> : null
   const renderCitation = source ? <Components.citation citation={source} /> : null
@@ -29,11 +26,9 @@ const Component = ({ actions, latestMessage, id, sender, time, type, body }) => 
 
   return (
     <div className={className}>
-      {/* <Components.avatar username={sender} /> */}
       {renderText}
       {renderImage}
-      {renderVideo}
-      {renderAudio}
+      {renderEmbed}
       {renderChart}
       {renderOptions}
       {renderCitation}

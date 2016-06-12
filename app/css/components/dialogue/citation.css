@@ -1,0 +1,10 @@
+@value color-light from "../../shared/settings.css";
+
+.base {
+  margin-top: 10px;
+  display: block;
+}
+
+.link {
+  color: color-light;
+}

@@ -1,10 +1,12 @@
 import React from 'react'
-// import styles from 'css/components/image.css'
+import styles from 'css/components/dialogue/image.css'
 
 const Component = ({ image }) => {
 
   return (
-    <img src={image} />
+    <div className={styles.base}>
+      <img src={image} />
+    </div>
   )
 
 }

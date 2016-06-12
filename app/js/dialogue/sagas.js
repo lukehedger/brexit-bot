@@ -295,7 +295,7 @@ function* setHumanPoll(action) {
     const res = yield call(API.put, `human/update/${human.get('id')}`, { brexit })
     const data = yield res.json()
     const chart = data.poll
-    const vote = `You voted for ${data.human.brexit ? 'Brexit' : 'Bremain'}`
+    const vote = `You voted for ${data.human.brexit ? 'Brexit' : 'Bremain'}. Here's the BrexitBot poll results so far:`
 
     yield put({ type: actions.SET_POLL_SUCCESS, payload: { incoming: { message: { chart, text: vote }}, polled: true, requesting: false, error: null } })
 
