@@ -1,3 +1,5 @@
+@value color-light, color-dark from "../shared/settings.css";
+
 .base {
   padding: 20px;
 }
@@ -16,5 +18,28 @@
   &:hover {
     transform: rotate(720deg);
     filter: blur(2px);
+  }
+}
+
+.wtf {
+  margin-top: 10px;
+  text-align: center;
+  color: color-light;
+}
+
+.who {
+  font-size: 12px;
+  text-align: center;
+  color: color-light;
+}
+
+.link {
+  border-bottom: 1px solid color-light;
+  color: color-light;
+  text-decoration: none;
+
+  &:hover {
+    background-color: color-light;
+    color: color-dark;
   }
 }

@@ -2,6 +2,8 @@
 
 > Ask a robot about Brexit or Bremain #spurious
 
+[![forthebadge](http://forthebadge.com/images/badges/compatibility-betamax.svg)](http://forthebadge.com)
+
 ## Setup bot
 
 ```
